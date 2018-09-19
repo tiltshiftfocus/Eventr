@@ -9,8 +9,10 @@
 import UIKit
 
 class EventTableController: UITableViewController {
+    
+    let defaults = UserDefaults.standard
 
-    let travelersProtocols = ["The mission comes first.", "Never jeopardize your cover.", "Don’t take a life; don’t save a life, unless otherwise directed. Do not interfere."]
+    var travelersProtocols = ["The mission comes first.", "Never jeopardize your cover.", "Don’t take a life; don’t save a life, unless otherwise directed. Do not interfere."]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +20,9 @@ class EventTableController: UITableViewController {
         tableView.estimatedRowHeight = 60.0
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.separatorStyle = .none
+        if let items = defaults.array(forKey: "SavedArray") as? [String] {
+            travelersProtocols = items
+        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -31,7 +36,6 @@ class EventTableController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        print(travelersProtocols[indexPath.row])
         
         let currentCell = tableView.cellForRow(at: indexPath)
         
@@ -43,6 +47,26 @@ class EventTableController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
-
+    @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
+        
+        var textField = UITextField()
+        
+        let alert = UIAlertController(title: "Add New Event", message: "", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Add Event", style: .default) { (action) in
+            self.travelersProtocols.append(textField.text!)
+            self.defaults.set(self.travelersProtocols, forKey: "SavedArray")
+            
+            self.tableView.reloadData()
+            
+        }
+        alert.addTextField { (alertTextField) in
+            alertTextField.placeholder = "Enter an event name"
+            textField = alertTextField
+        }
+        
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
+    }
+    
 }
 
