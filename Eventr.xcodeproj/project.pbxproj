@@ -62,7 +62,6 @@
 				C43CCB9B2152961C00BBC43A /* Model */,
 				C43CCB9A2152961500BBC43A /* Controller */,
 				C43CCB992152960B00BBC43A /* View */,
-				C43CCB89215295D400BBC43A /* Assets.xcassets */,
 			);
 			path = Eventr;
 			sourceTree = "<group>";
@@ -96,6 +95,7 @@
 		C43CCB9C2152963000BBC43A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C43CCB89215295D400BBC43A /* Assets.xcassets */,
 				C43CCB8E215295D400BBC43A /* Info.plist */,
 			);
 			name = "Supporting Files";
