@@ -10,28 +10,54 @@ import UIKit
 
 class EventTableController: UITableViewController {
     
+    let dateFormatter = DateFormatter()
+    
     let defaults = UserDefaults.standard
+    
+    var aray = [Event]()
+    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Events.sqlite")
 
-    var travelersProtocols = ["The mission comes first.", "Never jeopardize your cover.", "Don’t take a life; don’t save a life, unless otherwise directed. Do not interfere."]
+//    var travelersProtocols = ["The mission comes first.", "Never jeopardize your cover.", "Don’t take a life; don’t save a life, unless otherwise directed. Do not interfere.f nkdlsjfklsdjflk jsdkfj sdlkjfklsdjfklsdkljfhsdk bnsdkjfh sdkjh fkjsdhkjsdh fkjsdhfkj dshjkfsdh jkfhsdkj hkjsdhfkjsdh fkljdshfjkdshfk ljhdskljf hds fhjd shfkl jdshf lkds"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        dateFormatter.locale = Locale(identifier: "en_US")
+        setUpTableView()
+        
+        aray.append(Event(name: "test", dateOfEvent: Date(timeIntervalSinceNow: 400000)))
+        aray.append(Event(name: "test2", dateOfEvent: Date(timeIntervalSinceNow: -600000)))
+        aray.append(Event(name: "test3", dateOfEvent: Date(timeIntervalSinceNow: -750000)))
+        aray.append(Event(name: "test4", dateOfEvent: Date(timeIntervalSinceNow: -800000)))
+        
+//        if let items = defaults.array(forKey: "SavedArray") as? [String] {
+//            travelersProtocols = items
+//        }
+    }
+    
+    func setUpTableView() {
         tableView.register(UINib(nibName: "CustomEventCell", bundle: nil), forCellReuseIdentifier: "customEventCell")
         tableView.estimatedRowHeight = 60.0
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.separatorStyle = .none
-        if let items = defaults.array(forKey: "SavedArray") as? [String] {
-            travelersProtocols = items
-        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return travelersProtocols.count
+        return aray.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customEventCell", for: indexPath) as! CustomEventCell
-        cell.eventLabel?.text = travelersProtocols[indexPath.row]
+        
+        let event = aray[indexPath.row]
+        cell.eventLabel?.text = event.name
+        dateFormatter.dateFormat = "dd"
+        cell.dateLabel?.text = dateFormatter.string(from: event.dateOfEvent)
+        dateFormatter.dateFormat = "MMM"
+        cell.monthLabel?.text = dateFormatter.string(from: event.dateOfEvent)
+        
+        cell.relativeTimeLabel?.attributedText = event.formattedRelative
+        
         return cell
     }
     
@@ -53,8 +79,8 @@ class EventTableController: UITableViewController {
         
         let alert = UIAlertController(title: "Add New Event", message: "", preferredStyle: .alert)
         let action = UIAlertAction(title: "Add Event", style: .default) { (action) in
-            self.travelersProtocols.append(textField.text!)
-            self.defaults.set(self.travelersProtocols, forKey: "SavedArray")
+//            self.aray.append(textField.text!)
+//            self.defaults.set(self.aray, forKey: "SavedArray")
             
             self.tableView.reloadData()
             

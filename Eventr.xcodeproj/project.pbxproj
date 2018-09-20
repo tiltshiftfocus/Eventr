@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AC7E7B6E11564F2D37EE97C2 /* Pods_Eventr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9EEADF749E45B9CCC24F958 /* Pods_Eventr.framework */; };
 		C43CCB83215295D300BBC43A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43CCB82215295D300BBC43A /* AppDelegate.swift */; };
 		C43CCB85215295D300BBC43A /* EventTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43CCB84215295D300BBC43A /* EventTableController.swift */; };
 		C43CCB88215295D300BBC43A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C43CCB86215295D300BBC43A /* Main.storyboard */; };
@@ -14,9 +15,11 @@
 		C43CCB8D215295D400BBC43A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C43CCB8B215295D400BBC43A /* LaunchScreen.storyboard */; };
 		C43CCBA421529EC500BBC43A /* CustomEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43CCBA221529EC500BBC43A /* CustomEventCell.swift */; };
 		C43CCBA521529EC500BBC43A /* CustomEventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C43CCBA321529EC500BBC43A /* CustomEventCell.xib */; };
+		C4C9D308215381F800172322 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C9D307215381F800172322 /* Event.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		601456745D71E2040970BAC2 /* Pods-Eventr.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eventr.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Eventr/Pods-Eventr.debug.xcconfig"; sourceTree = "<group>"; };
 		C43CCB7F215295D300BBC43A /* Eventr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Eventr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C43CCB82215295D300BBC43A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C43CCB84215295D300BBC43A /* EventTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableController.swift; sourceTree = "<group>"; };
@@ -26,6 +29,9 @@
 		C43CCB8E215295D400BBC43A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C43CCBA221529EC500BBC43A /* CustomEventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomEventCell.swift; sourceTree = "<group>"; };
 		C43CCBA321529EC500BBC43A /* CustomEventCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomEventCell.xib; sourceTree = "<group>"; };
+		C4C9D307215381F800172322 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		EF7DEB37C0C270CBE1D4E978 /* Pods-Eventr.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eventr.release.xcconfig"; path = "Pods/Target Support Files/Pods-Eventr/Pods-Eventr.release.xcconfig"; sourceTree = "<group>"; };
+		F9EEADF749E45B9CCC24F958 /* Pods_Eventr.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Eventr.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +39,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC7E7B6E11564F2D37EE97C2 /* Pods_Eventr.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5363709F85D533B9C3AE5149 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				601456745D71E2040970BAC2 /* Pods-Eventr.debug.xcconfig */,
+				EF7DEB37C0C270CBE1D4E978 /* Pods-Eventr.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		C43CCB76215295D300BBC43A = {
 			isa = PBXGroup;
 			children = (
 				C43CCB81215295D300BBC43A /* Eventr */,
 				C43CCB80215295D300BBC43A /* Products */,
+				5363709F85D533B9C3AE5149 /* Pods */,
+				CA425A13BBE8DABB24B23D62 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,56 +76,49 @@
 		C43CCB81215295D300BBC43A /* Eventr */ = {
 			isa = PBXGroup;
 			children = (
-				C43CCB9C2152963000BBC43A /* Supporting Files */,
-				C43CCB9B2152961C00BBC43A /* Model */,
-				C43CCB9A2152961500BBC43A /* Controller */,
-				C43CCB992152960B00BBC43A /* View */,
+				C4C9D306215381D200172322 /* Models */,
+				C4C9D305215381CC00172322 /* Views */,
+				C4C9D304215381C500172322 /* Controllers */,
+				C43CCB89215295D400BBC43A /* Assets.xcassets */,
+				C43CCB8E215295D400BBC43A /* Info.plist */,
 			);
 			path = Eventr;
 			sourceTree = "<group>";
 		};
-		C43CCB992152960B00BBC43A /* View */ = {
-			isa = PBXGroup;
-			children = (
-				C43CCBA121529DE800BBC43A /* Custom Cell */,
-				C43CCB86215295D300BBC43A /* Main.storyboard */,
-				C43CCB8B215295D400BBC43A /* LaunchScreen.storyboard */,
-			);
-			name = View;
-			sourceTree = "<group>";
-		};
-		C43CCB9A2152961500BBC43A /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				C43CCB82215295D300BBC43A /* AppDelegate.swift */,
-				C43CCB84215295D300BBC43A /* EventTableController.swift */,
-			);
-			name = Controller;
-			sourceTree = "<group>";
-		};
-		C43CCB9B2152961C00BBC43A /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Model;
-			sourceTree = "<group>";
-		};
-		C43CCB9C2152963000BBC43A /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				C43CCB89215295D400BBC43A /* Assets.xcassets */,
-				C43CCB8E215295D400BBC43A /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		C43CCBA121529DE800BBC43A /* Custom Cell */ = {
+		C4C9D304215381C500172322 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				C43CCBA221529EC500BBC43A /* CustomEventCell.swift */,
+				C43CCB82215295D300BBC43A /* AppDelegate.swift */,
+				C43CCB84215295D300BBC43A /* EventTableController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		C4C9D305215381CC00172322 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C43CCB86215295D300BBC43A /* Main.storyboard */,
+				C43CCB8B215295D400BBC43A /* LaunchScreen.storyboard */,
 				C43CCBA321529EC500BBC43A /* CustomEventCell.xib */,
 			);
-			name = "Custom Cell";
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C4C9D306215381D200172322 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C4C9D307215381F800172322 /* Event.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CA425A13BBE8DABB24B23D62 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F9EEADF749E45B9CCC24F958 /* Pods_Eventr.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -117,9 +128,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C43CCB91215295D400BBC43A /* Build configuration list for PBXNativeTarget "Eventr" */;
 			buildPhases = (
+				A6B9A1CF68D9C05BABFE379D /* [CP] Check Pods Manifest.lock */,
 				C43CCB7B215295D300BBC43A /* Sources */,
 				C43CCB7C215295D300BBC43A /* Frameworks */,
 				C43CCB7D215295D300BBC43A /* Resources */,
+				550830A4187F2E984DB12499 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -177,11 +190,53 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		550830A4187F2E984DB12499 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Eventr/Pods-Eventr-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SQLite.swift/SQLite.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLite.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Eventr/Pods-Eventr-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A6B9A1CF68D9C05BABFE379D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Eventr-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C43CCB7B215295D300BBC43A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4C9D308215381F800172322 /* Event.swift in Sources */,
 				C43CCB85215295D300BBC43A /* EventTableController.swift in Sources */,
 				C43CCB83215295D300BBC43A /* AppDelegate.swift in Sources */,
 				C43CCBA421529EC500BBC43A /* CustomEventCell.swift in Sources */,
@@ -326,6 +381,7 @@
 		};
 		C43CCB92215295D400BBC43A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 601456745D71E2040970BAC2 /* Pods-Eventr.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -344,6 +400,7 @@
 		};
 		C43CCB93215295D400BBC43A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EF7DEB37C0C270CBE1D4E978 /* Pods-Eventr.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

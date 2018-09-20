@@ -10,7 +10,10 @@ import UIKit
 
 class CustomEventCell: UITableViewCell {
 
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var monthLabel: UILabel!
     @IBOutlet weak var eventLabel: UILabel!
+    @IBOutlet weak var relativeTimeLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
