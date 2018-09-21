@@ -15,6 +15,7 @@
 		C43CCB8D215295D400BBC43A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C43CCB8B215295D400BBC43A /* LaunchScreen.storyboard */; };
 		C43CCBA421529EC500BBC43A /* CustomEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43CCBA221529EC500BBC43A /* CustomEventCell.swift */; };
 		C43CCBA521529EC500BBC43A /* CustomEventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C43CCBA321529EC500BBC43A /* CustomEventCell.xib */; };
+		C4A284612154884500054E1B /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A284602154884500054E1B /* DBManager.swift */; };
 		C4C9D308215381F800172322 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C9D307215381F800172322 /* Event.swift */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +30,7 @@
 		C43CCB8E215295D400BBC43A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C43CCBA221529EC500BBC43A /* CustomEventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomEventCell.swift; sourceTree = "<group>"; };
 		C43CCBA321529EC500BBC43A /* CustomEventCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomEventCell.xib; sourceTree = "<group>"; };
+		C4A284602154884500054E1B /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
 		C4C9D307215381F800172322 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		EF7DEB37C0C270CBE1D4E978 /* Pods-Eventr.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eventr.release.xcconfig"; path = "Pods/Target Support Files/Pods-Eventr/Pods-Eventr.release.xcconfig"; sourceTree = "<group>"; };
 		F9EEADF749E45B9CCC24F958 /* Pods_Eventr.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Eventr.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,6 +78,8 @@
 		C43CCB81215295D300BBC43A /* Eventr */ = {
 			isa = PBXGroup;
 			children = (
+				C4A2846B2154A57A00054E1B /* Managers */,
+				C4A284622154A0A000054E1B /* Supporting Files */,
 				C4C9D306215381D200172322 /* Models */,
 				C4C9D305215381CC00172322 /* Views */,
 				C4C9D304215381C500172322 /* Controllers */,
@@ -83,6 +87,21 @@
 				C43CCB8E215295D400BBC43A /* Info.plist */,
 			);
 			path = Eventr;
+			sourceTree = "<group>";
+		};
+		C4A284622154A0A000054E1B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C4A2846B2154A57A00054E1B /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				C4A284602154884500054E1B /* DBManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		C4C9D304215381C500172322 /* Controllers */ = {
@@ -198,13 +217,15 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Eventr/Pods-Eventr-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/SQLite.swift/SQLite.framework",
+				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/SwipeCellKit/SwipeCellKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLite.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwipeCellKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -240,6 +261,7 @@
 				C43CCB85215295D300BBC43A /* EventTableController.swift in Sources */,
 				C43CCB83215295D300BBC43A /* AppDelegate.swift in Sources */,
 				C43CCBA421529EC500BBC43A /* CustomEventCell.swift in Sources */,
+				C4A284612154884500054E1B /* DBManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -393,6 +415,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jerry.Eventr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -412,6 +435,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jerry.Eventr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

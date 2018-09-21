@@ -12,11 +12,22 @@ class Event {
     var name: String = ""
     var dateOfEvent: Date = Date()
     var formattedRelative: NSAttributedString = NSAttributedString(string: "")
+    var isWeekend: Bool = false
+    
+    var cal = Calendar(identifier: .gregorian)
     
     init(name: String, dateOfEvent: Date = Date()) {
         self.name = name
         self.dateOfEvent = dateOfEvent
         self.formattedRelative = relativeTimeFormatter(date1: dateOfEvent)
+        setWeekEnd()
+    }
+    
+    func setWeekEnd() {
+        cal.firstWeekday = 1
+        if cal.isDateInWeekend(self.dateOfEvent) {
+            self.isWeekend = true
+        }
     }
     
     func relativeTimeFormatter(date1: Date) -> NSAttributedString {

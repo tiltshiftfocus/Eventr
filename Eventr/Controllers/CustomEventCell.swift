@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import SwipeCellKit
 
-class CustomEventCell: UITableViewCell {
+class CustomEventCell: SwipeTableViewCell {
 
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var monthLabel: UILabel!
+    @IBOutlet weak var yearLabel: UILabel!
+    
     @IBOutlet weak var eventLabel: UILabel!
     @IBOutlet weak var relativeTimeLabel: UILabel!
     
