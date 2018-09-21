@@ -15,7 +15,7 @@ class EventTableController: UITableViewController {
     
     let defaults = UserDefaults.standard
     
-    var aray = [Event]()
+    var allEvents = [Event]()
     let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Events.sqlite")
     let db = DBManager.db
 
@@ -27,7 +27,7 @@ class EventTableController: UITableViewController {
         dateFormatter.locale = Locale(identifier: "en_US")
         
         setUpTableView()
-        aray = db.queryAll()
+        allEvents = db.queryAll()
         
 //        if let items = defaults.array(forKey: "SavedArray") as? [String] {
 //            travelersProtocols = items
@@ -42,8 +42,16 @@ class EventTableController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return aray.count
+        return allEvents.count
     }
+    
+//    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        return "Section \(section)"
+//    }
+//
+//    override func numberOfSections(in tableView: UITableView) -> Int {
+//        return 2
+//    }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customEventCell", for: indexPath) as! CustomEventCell
@@ -51,7 +59,7 @@ class EventTableController: UITableViewController {
         
         tableView.indexPath(for: cell)
         
-        let event = aray[indexPath.row]
+        let event = allEvents[indexPath.row]
         cell.eventLabel?.text = event.name
         
         dateFormatter.dateFormat = "dd"
@@ -124,7 +132,7 @@ extension EventTableController: SwipeTableViewCellDelegate {
 
 extension EventTableController: UITableViewDataSourcePrefetching {
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-        <#code#>
+        
     }
     
     
