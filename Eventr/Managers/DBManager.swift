@@ -14,7 +14,7 @@ class DBManager {
     
     let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Events.sqlite")
     
-    let createStmt = "CREATE TABLE IF NOT EXISTS events ( ID integer PRIMARY KEY, name text NOT NULL, when_db integer NOT NULL DEFAULT(CAST((julianday('now') - 2440587.5)*86400000 AS INTEGER)), image blob );"
+    let createStmt = "CREATE TABLE IF NOT EXISTS events ( ID integer PRIMARY KEY, name text NOT NULL, when_db integer NOT NULL DEFAULT(CAST((julianday('now') - 2440587.5)*86400000 AS INTEGER)), image blob, isAvailable integer DEFAULT(1));"
     
     var db: FMDatabase;
     
@@ -36,7 +36,7 @@ class DBManager {
     }
     
     func queryAll() -> [Event] {
-        let stmt = "SELECT * FROM events ORDER BY when_db desc;"
+        let stmt = "SELECT * FROM events WHERE isAvailable = 1 ORDER BY when_db desc;"
         var events = [Event]()
         do {
             let rs = try db.executeQuery(stmt, values: nil)
@@ -58,8 +58,7 @@ class DBManager {
         let stmt = "INSERT INTO events (name, when_db) VALUES (?, ?);"
         
         do {
-            
-            let unixTime: Double = datetime.timeIntervalSince1970 * 1000
+            let unixTime: Int64 = Int64(datetime.timeIntervalSince1970 * 1000)
             
             try db.executeUpdate(stmt, values: [name, unixTime])
             print("inserted!")
@@ -69,7 +68,7 @@ class DBManager {
     }
     
     func delete(id: Int64) -> Bool {
-        let stmt = "DELETE FROM events WHERE ID = ?;"
+        let stmt = "UPDATE events SET isAvailable = 0 WHERE ID = ?;"
         do {
             try db.executeUpdate(stmt, values: [id])
             print("deleted")
@@ -84,7 +83,8 @@ class DBManager {
         let stmt = "UPDATE events SET name = ?, when_db = ? WHERE ID = ?;"
         
         do {
-            let unixTime: Double = datetime.timeIntervalSince1970 * 1000
+            let unixTime: Int64 = Int64(datetime.timeIntervalSince1970 * 1000)
+            
             try db.executeUpdate(stmt, values: [name, unixTime, id])
             print("updated!")
         } catch {
