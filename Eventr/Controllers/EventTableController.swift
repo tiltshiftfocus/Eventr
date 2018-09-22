@@ -8,8 +8,10 @@
 
 import UIKit
 import SwipeCellKit
+import SVProgressHUD
 
 class EventTableController: UITableViewController {
+    @IBOutlet weak var searchBar: UISearchBar!
     
     let dateFormatter = DateFormatter()
     let defaults = UserDefaults.standard
@@ -20,6 +22,8 @@ class EventTableController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        searchBar.delegate = self
         dateFormatter.locale = Locale(identifier: "en_US")
         
         setUpTableView()
@@ -123,6 +127,7 @@ class EventTableController: UITableViewController {
                 destVC.id = data.id
                 destVC.name = data.name
                 destVC.datetime = data.dateOfEvent
+                selectedMode = "add"
             }
         }
     }
@@ -136,14 +141,14 @@ extension EventTableController: SwipeTableViewCellDelegate {
         guard orientation == .right else { return nil }
         
         let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
-            // handle action by updating model with deletion
             let id = self.allEvents[indexPath.row].id
             let result = self.db.delete(id: id)
             if result == true {
-                self.allEvents = self.allEvents.filter{ $0.id != id }
-                tableView.beginUpdates()
-                tableView.deleteRows(at: [indexPath], with: .fade)
-                tableView.endUpdates()
+//                    self.allEvents = self.allEvents.filter{ $0.id != id }
+//                    tableView.beginUpdates()
+//                    tableView.deleteRows(at: [indexPath], with: .fade)
+//                    tableView.endUpdates()
+                self.allEvents = self.db.queryAll()
             }
         }
         
@@ -162,6 +167,13 @@ extension EventTableController: SwipeTableViewCellDelegate {
         
         return [deleteAction, editAction]
     }
+    
+    func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeOptions {
+        var options = SwipeOptions()
+        options.expansionStyle = .destructive
+        options.transitionStyle = .border
+        return options
+    }
 }
 
 extension EventTableController: UITableViewDataSourcePrefetching {
@@ -173,9 +185,27 @@ extension EventTableController: UITableViewDataSourcePrefetching {
 // MARK: Protocol Delegate from CreateEventController
 
 extension EventTableController: EventDelegate {
-    func eventCreated() {
+    func eventCreated(eventName: String) {
+        SVProgressHUD.setMinimumDismissTimeInterval(1.0)
+        SVProgressHUD.showSuccess(withStatus: "Event \(eventName) Created")
         allEvents = db.queryAll()
         tableView.reloadData()
+    }
+}
+
+extension EventTableController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        allEvents = db.query(text: searchBar.text!)
+        tableView.reloadData()
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text?.count == 0 {
+            allEvents = db.queryAll()
+            tableView.reloadData()
+            searchBar.resignFirstResponder()
+        }
     }
 }
 

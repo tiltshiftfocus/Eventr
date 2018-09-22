@@ -18,9 +18,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search" translucent="NO" id="PnE-Z0-9OL">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <color key="barTintColor" red="0.64705882349999999" green="0.83921568629999999" blue="0.65490196079999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <scopeButtonTitles>
+                                <string>Title</string>
+                                <string>Title</string>
+                            </scopeButtonTitles>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EventItemCell" id="mW7-6U-q5a" customClass="CustomEventCell" customModule="Eventr" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="84" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mW7-6U-q5a" id="gMb-nY-WTI">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -42,6 +52,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="searchBar" destination="PnE-Z0-9OL" id="Ikf-ZK-bZY"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oge-0I-Uby" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -59,13 +72,13 @@
                                 <rect key="frame" x="16" y="75" width="343" height="325"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="iaA-XZ-Ng3">
-                                        <rect key="frame" x="10" y="40" width="323" height="275"/>
+                                        <rect key="frame" x="0.0" y="40" width="343" height="285"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xfb-qj-Ihw">
-                                        <rect key="frame" x="10" y="8" width="323" height="24"/>
+                                        <rect key="frame" x="4" y="8" width="335" height="24"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <color key="textColor" red="0.1784731218" green="0.1715399789" blue="0.17730887949999999" alpha="0.55922645250000003" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
@@ -73,12 +86,12 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="Xfb-qj-Ihw" firstAttribute="top" secondItem="Cy1-yk-sNv" secondAttribute="top" constant="8" id="75y-it-QgY"/>
-                                    <constraint firstItem="Xfb-qj-Ihw" firstAttribute="leading" secondItem="Cy1-yk-sNv" secondAttribute="leading" constant="10" id="Tu5-Rd-0xZ"/>
-                                    <constraint firstAttribute="trailing" secondItem="iaA-XZ-Ng3" secondAttribute="trailing" constant="10" id="Wte-7v-WMq"/>
-                                    <constraint firstAttribute="trailing" secondItem="Xfb-qj-Ihw" secondAttribute="trailing" constant="10" id="XQ8-4M-ay5"/>
-                                    <constraint firstItem="iaA-XZ-Ng3" firstAttribute="leading" secondItem="Cy1-yk-sNv" secondAttribute="leading" constant="10" id="ai1-Ls-juH"/>
+                                    <constraint firstItem="Xfb-qj-Ihw" firstAttribute="leading" secondItem="Cy1-yk-sNv" secondAttribute="leading" constant="4" id="Tu5-Rd-0xZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="iaA-XZ-Ng3" secondAttribute="trailing" id="Wte-7v-WMq"/>
+                                    <constraint firstAttribute="trailing" secondItem="Xfb-qj-Ihw" secondAttribute="trailing" constant="4" id="XQ8-4M-ay5"/>
+                                    <constraint firstItem="iaA-XZ-Ng3" firstAttribute="leading" secondItem="Cy1-yk-sNv" secondAttribute="leading" id="ai1-Ls-juH"/>
                                     <constraint firstItem="iaA-XZ-Ng3" firstAttribute="top" secondItem="Xfb-qj-Ihw" secondAttribute="bottom" constant="8" id="leY-Rg-4K8"/>
-                                    <constraint firstAttribute="bottom" secondItem="iaA-XZ-Ng3" secondAttribute="bottom" constant="10" id="pUs-vS-o7p"/>
+                                    <constraint firstAttribute="bottom" secondItem="iaA-XZ-Ng3" secondAttribute="bottom" id="pUs-vS-o7p"/>
                                     <constraint firstItem="iaA-XZ-Ng3" firstAttribute="top" secondItem="Xfb-qj-Ihw" secondAttribute="bottom" constant="8" id="yMJ-06-KJP"/>
                                 </constraints>
                             </view>
@@ -123,6 +136,7 @@
                     <connections>
                         <outlet property="dateTimePicker" destination="WN2-yV-2TH" id="pET-Bt-hLe"/>
                         <outlet property="eventNameTextView" destination="iaA-XZ-Ng3" id="3rw-sm-JiR"/>
+                        <outlet property="saveButton" destination="1ua-Sa-dxe" id="3Qn-e1-0g7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mhC-ZL-vea" userLabel="First Responder" sceneMemberID="firstResponder"/>
