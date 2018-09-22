@@ -43,6 +43,14 @@ class EventTableController: UITableViewController {
         return allEvents.count
     }
     
+//    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        return "Section \(section)"
+//    }
+//
+//    override func numberOfSections(in tableView: UITableView) -> Int {
+//        return 2
+//    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customEventCell", for: indexPath) as! CustomEventCell
         cell.delegate = self
