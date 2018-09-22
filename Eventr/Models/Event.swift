@@ -32,6 +32,10 @@ class Event {
         }
     }
     
+    func updateRelative() {
+        self.formattedRelative = relativeTimeFormatter(date1: dateOfEvent)
+    }
+    
     func relativeTimeFormatter(date1: Date) -> NSAttributedString {
         let date2 = Date()
         let calendar = Calendar.current

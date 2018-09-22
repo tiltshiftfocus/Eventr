@@ -10,6 +10,7 @@ import UIKit
 
 protocol EventDelegate {
     func eventCreated(eventName: String)
+    func wentBack()
 }
 
 class CreateEventController: UIViewController {
@@ -34,6 +35,10 @@ class CreateEventController: UIViewController {
         
         initView()
         validate()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        delegate?.wentBack()
     }
     
     func initView() {

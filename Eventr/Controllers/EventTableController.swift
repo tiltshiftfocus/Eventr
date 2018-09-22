@@ -15,6 +15,7 @@ class EventTableController: UITableViewController {
     
     let dateFormatter = DateFormatter()
     let defaults = UserDefaults.standard
+    var timer: Timer?
     
     let db = DBManager.db
     var allEvents = [Event]()
@@ -22,16 +23,13 @@ class EventTableController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTableTimer), userInfo: nil, repeats: true)
         
         searchBar.delegate = self
         dateFormatter.locale = Locale(identifier: "en_US")
         
         setUpTableView()
         allEvents = db.queryAll()
-        
-//        if let items = defaults.array(forKey: "SavedArray") as? [String] {
-//            travelersProtocols = items
-//        }
     }
     
     func setUpTableView() {
@@ -43,23 +41,23 @@ class EventTableController: UITableViewController {
     
     // MARK: Table Stuff
     
+    @objc func updateTableTimer() {
+        for cell in tableView.visibleCells {
+            let indexPath = tableView.indexPath(for: cell)!
+            let currentEvent = allEvents[indexPath.row]
+            let currentCell = tableView(tableView, cellForRowAt: indexPath) as! CustomEventCell
+            currentEvent.updateRelative()
+            currentCell.relativeTimeLabel.attributedText = currentEvent.formattedRelative
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return allEvents.count
     }
     
-//    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        return "Section \(section)"
-//    }
-//
-//    override func numberOfSections(in tableView: UITableView) -> Int {
-//        return 2
-//    }
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customEventCell", for: indexPath) as! CustomEventCell
         cell.delegate = self
-        
-        tableView.indexPath(for: cell)
         
         let event = allEvents[indexPath.row]
         cell.eventLabel?.text = event.name
@@ -83,36 +81,18 @@ class EventTableController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        let currentCell = tableView.cellForRow(at: indexPath)
-        
-        if currentCell?.accessoryType == .checkmark {
-           currentCell?.accessoryType = .none
-        } else {
-           currentCell?.accessoryType = .checkmark
-        }
+
+//        let currentCell = tableView.cellForRow(at: indexPath)
+//
+//        if currentCell?.accessoryType == .checkmark {
+//           currentCell?.accessoryType = .none
+//        } else {
+//           currentCell?.accessoryType = .checkmark
+//        }
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
-        
-//        var textField = UITextField()
-        
-//        let alert = UIAlertController(title: "Add New Event", message: "", preferredStyle: .alert)
-//        let action = UIAlertAction(title: "Add Event", style: .default) { (action) in
-////            self.aray.append(textField.text!)
-////            self.defaults.set(self.aray, forKey: "SavedArray")
-//
-//            self.tableView.reloadData()
-//
-//        }
-//        alert.addTextField { (alertTextField) in
-//            alertTextField.placeholder = "Enter an event name"
-////            textField = alertTextField
-//        }
-//
-//        alert.addAction(action)
-//        present(alert, animated: true, completion: nil)
         selectedMode = "add"
     }
     
@@ -120,6 +100,7 @@ class EventTableController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "toAddEvent") {
+            timer?.invalidate()
             let destVC = segue.destination as! CreateEventController
             destVC.delegate = self
             if selectedMode == "edit" {
@@ -190,6 +171,10 @@ extension EventTableController: EventDelegate {
         SVProgressHUD.showSuccess(withStatus: "Event \(eventName) Created")
         allEvents = db.queryAll()
         tableView.reloadData()
+    }
+    
+    func wentBack() {
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTableTimer), userInfo: nil, repeats: true)
     }
 }
 
