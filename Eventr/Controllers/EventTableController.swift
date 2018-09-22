@@ -173,7 +173,11 @@ extension EventTableController: EventDelegate {
     func eventCreated(eventName: String) {
         SVProgressHUD.setMinimumDismissTimeInterval(1.0)
         SVProgressHUD.showSuccess(withStatus: "Event \(eventName) Created")
-        allEvents = db.queryAll()
+        if searchBar.text?.count == 0 {
+            allEvents = db.queryAll()
+        } else {
+            allEvents = db.query(text: searchBar.text!)
+        }
         tableView.reloadData()
     }
     

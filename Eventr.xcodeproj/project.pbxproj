@@ -17,6 +17,7 @@
 		C43CCBA521529EC500BBC43A /* CustomEventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C43CCBA321529EC500BBC43A /* CustomEventCell.xib */; };
 		C4688AE621554787009326B2 /* CreateEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4688AE521554787009326B2 /* CreateEventController.swift */; };
 		C4688AE82155C028009326B2 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4688AE72155C028009326B2 /* Utils.swift */; };
+		C480E3382156A23D00421BE4 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C480E3372156A23D00421BE4 /* CardView.swift */; };
 		C4A284612154884500054E1B /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A284602154884500054E1B /* DBManager.swift */; };
 		C4C9D308215381F800172322 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C9D307215381F800172322 /* Event.swift */; };
 /* End PBXBuildFile section */
@@ -34,6 +35,7 @@
 		C43CCBA321529EC500BBC43A /* CustomEventCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomEventCell.xib; sourceTree = "<group>"; };
 		C4688AE521554787009326B2 /* CreateEventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventController.swift; sourceTree = "<group>"; };
 		C4688AE72155C028009326B2 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		C480E3372156A23D00421BE4 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		C4A284602154884500054E1B /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
 		C4C9D307215381F800172322 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		EF7DEB37C0C270CBE1D4E978 /* Pods-Eventr.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eventr.release.xcconfig"; path = "Pods/Target Support Files/Pods-Eventr/Pods-Eventr.release.xcconfig"; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 				C4C9D304215381C500172322 /* Controllers */,
 				C43CCB89215295D400BBC43A /* Assets.xcassets */,
 				C43CCB8E215295D400BBC43A /* Info.plist */,
+				C480E3372156A23D00421BE4 /* CardView.swift */,
 			);
 			path = Eventr;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 				C4688AE82155C028009326B2 /* Utils.swift in Sources */,
 				C43CCBA421529EC500BBC43A /* CustomEventCell.swift in Sources */,
 				C4688AE621554787009326B2 /* CreateEventController.swift in Sources */,
+				C480E3382156A23D00421BE4 /* CardView.swift in Sources */,
 				C4A284612154884500054E1B /* DBManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
