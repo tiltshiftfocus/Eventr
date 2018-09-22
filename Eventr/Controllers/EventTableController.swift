@@ -91,6 +91,10 @@ class EventTableController: UITableViewController {
 //        }
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
 
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
         selectedMode = "add"
