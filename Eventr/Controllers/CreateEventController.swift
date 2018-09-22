@@ -66,7 +66,7 @@ class CreateEventController: UIViewController {
         if id == -1 {
             db.insert(name: eventNameTextView.text, datetime: datetime)
         } else if id > 0 {
-            db.update(id: id, name: name, datetime: datetime)
+            db.update(id: id, name: eventNameTextView.text, datetime: datetime)
         }
         delegate?.eventCreated(eventName: eventNameTextView.text)
         navigationController?.popViewController(animated: true)
