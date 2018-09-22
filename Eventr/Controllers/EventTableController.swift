@@ -10,8 +10,9 @@ import UIKit
 import SwipeCellKit
 import SVProgressHUD
 
-class EventTableController: UITableViewController {
+class EventTableController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var tableView: UITableView!
     
     let dateFormatter = DateFormatter()
     let defaults = UserDefaults.standard
@@ -26,6 +27,9 @@ class EventTableController: UITableViewController {
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTableTimer), userInfo: nil, repeats: true)
         
         searchBar.delegate = self
+        tableView.delegate = self
+        tableView.dataSource = self
+        
         dateFormatter.locale = Locale(identifier: "en_US")
         
         setUpTableView()
@@ -51,13 +55,13 @@ class EventTableController: UITableViewController {
         }
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return allEvents.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customEventCell", for: indexPath) as! CustomEventCell
-        cell.delegate = self
+//        cell.delegate = self
         
         let event = allEvents[indexPath.row]
         cell.eventLabel?.text = event.name
@@ -80,7 +84,7 @@ class EventTableController: UITableViewController {
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
 //        let currentCell = tableView.cellForRow(at: indexPath)
 //
@@ -92,8 +96,34 @@ class EventTableController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
+            let id = self.allEvents[indexPath.row].id
+            let result = self.db.delete(id: id)
+            if result == true {
+                self.allEvents = self.allEvents.filter{ $0.id != id }
+                tableView.beginUpdates()
+                tableView.deleteRows(at: [indexPath], with: .fade)
+                tableView.endUpdates()
+                self.allEvents = self.db.queryAll()
+            }
+        }
+        deleteAction.backgroundColor = UIColor.red
+        
+        
+        let editAction = UITableViewRowAction(style: .normal, title: "Edit") { (action, indexPath) in
+            let event: Event = self.allEvents[indexPath.row]
+            self.selectedMode = "edit"
+            self.performSegue(withIdentifier: "toAddEvent", sender: event)
+        }
+        editAction.backgroundColor = UIColor(rgb: 0xbbdefb)
+        
+        return [deleteAction, editAction]
+        
     }
 
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
@@ -121,57 +151,52 @@ class EventTableController: UITableViewController {
 
 
 // MARK: SWIPE CELL
-extension EventTableController: SwipeTableViewCellDelegate {
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
-        guard orientation == .right else { return nil }
-        
-        let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
-            let id = self.allEvents[indexPath.row].id
-            let result = self.db.delete(id: id)
-            if result == true {
-//                    self.allEvents = self.allEvents.filter{ $0.id != id }
-//                    tableView.beginUpdates()
-//                    tableView.deleteRows(at: [indexPath], with: .fade)
-//                    tableView.endUpdates()
-                self.allEvents = self.db.queryAll()
-            }
-        }
-        
-        // customize the action appearance
-        deleteAction.image = UIImage(named: "trash")
-        
-        let editAction = SwipeAction(style: .default, title: "Edit") { action, indexPath in
-            // handle action by updating model with deletion
-            let event: Event = self.allEvents[indexPath.row]
-            self.selectedMode = "edit"
-            self.performSegue(withIdentifier: "toAddEvent", sender: event)
-        }
-        
-        // customize the action appearance
-        editAction.image = UIImage(named: "pencil-edit")
-        
-        return [deleteAction, editAction]
-    }
-    
-    func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeOptions {
-        var options = SwipeOptions()
-        options.expansionStyle = .destructive
-        options.transitionStyle = .border
-        return options
-    }
-}
-
-extension EventTableController: UITableViewDataSourcePrefetching {
-    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-        
-    }
-}
+//extension EventTableController: SwipeTableViewCellDelegate {
+//    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+//        guard orientation == .right else { return nil }
+//
+//        let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
+//            let id = self.allEvents[indexPath.row].id
+//            let result = self.db.delete(id: id)
+//            if result == true {
+////                    self.allEvents = self.allEvents.filter{ $0.id != id }
+////                    tableView.beginUpdates()
+////                    tableView.deleteRows(at: [indexPath], with: .fade)
+////                    tableView.endUpdates()
+//                self.allEvents = self.db.queryAll()
+//            }
+//        }
+//
+//        // customize the action appearance
+//        deleteAction.image = UIImage(named: "trash")
+//
+//        let editAction = SwipeAction(style: .default, title: "Edit") { action, indexPath in
+//            // handle action by updating model with deletion
+//            let event: Event = self.allEvents[indexPath.row]
+//            self.selectedMode = "edit"
+//            self.performSegue(withIdentifier: "toAddEvent", sender: event)
+//        }
+//
+//        // customize the action appearance
+//        editAction.image = UIImage(named: "pencil-edit")
+//
+//        return [deleteAction, editAction]
+//    }
+//
+//    func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeOptions {
+//        var options = SwipeOptions()
+//        options.expansionStyle = .destructive
+//        options.transitionStyle = .border
+//        return options
+//    }
+//}
 
 // MARK: Protocol Delegate from CreateEventController
 
 extension EventTableController: EventDelegate {
     func eventCreated(eventName: String) {
         SVProgressHUD.setMinimumDismissTimeInterval(1.0)
+        SVProgressHUD.setMaximumDismissTimeInterval(1.8)
         SVProgressHUD.showSuccess(withStatus: "Event \(eventName) Created")
         if searchBar.text?.count == 0 {
             allEvents = db.queryAll()
