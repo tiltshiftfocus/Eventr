@@ -9,6 +9,7 @@
 import UIKit
 
 class Event {
+    var id: Int64 = 0
     var name: String = ""
     var dateOfEvent: Date = Date()
     var formattedRelative: NSAttributedString = NSAttributedString(string: "")
@@ -16,7 +17,8 @@ class Event {
     
     var cal = Calendar(identifier: .gregorian)
     
-    init(name: String, dateOfEvent: Date = Date()) {
+    init(id: Int64, name: String, dateOfEvent: Date = Date()) {
+        self.id = id
         self.name = name
         self.dateOfEvent = dateOfEvent
         self.formattedRelative = relativeTimeFormatter(date1: dateOfEvent)

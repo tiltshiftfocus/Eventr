@@ -12,22 +12,18 @@ import SwipeCellKit
 class EventTableController: UITableViewController {
     
     let dateFormatter = DateFormatter()
-    
     let defaults = UserDefaults.standard
     
-    var aray = [Event]()
-    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Events.sqlite")
     let db = DBManager.db
-
-//    var travelersProtocols = ["The mission comes first.", "Never jeopardize your cover.", "Don’t take a life; don’t save a life, unless otherwise directed. Do not interfere.f nkdlsjfklsdjflk jsdkfj sdlkjfklsdjfklsdkljfhsdk bnsdkjfh sdkjh fkjsdhkjsdh fkjsdhfkj dshjkfsdh jkfhsdkj hkjsdhfkjsdh fkljdshfjkdshfk ljhdskljf hds fhjd shfkl jdshf lkds"]
+    var allEvents = [Event]()
+    var selectedMode = "add"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         dateFormatter.locale = Locale(identifier: "en_US")
         
         setUpTableView()
-        aray = db.queryAll()
+        allEvents = db.queryAll()
         
 //        if let items = defaults.array(forKey: "SavedArray") as? [String] {
 //            travelersProtocols = items
@@ -41,8 +37,10 @@ class EventTableController: UITableViewController {
         tableView.separatorStyle = .none
     }
     
+    // MARK: Table Stuff
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return aray.count
+        return allEvents.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -51,7 +49,7 @@ class EventTableController: UITableViewController {
         
         tableView.indexPath(for: cell)
         
-        let event = aray[indexPath.row]
+        let event = allEvents[indexPath.row]
         cell.eventLabel?.text = event.name
         
         dateFormatter.dateFormat = "dd"
@@ -88,45 +86,88 @@ class EventTableController: UITableViewController {
         
 //        var textField = UITextField()
         
-        let alert = UIAlertController(title: "Add New Event", message: "", preferredStyle: .alert)
-        let action = UIAlertAction(title: "Add Event", style: .default) { (action) in
-//            self.aray.append(textField.text!)
-//            self.defaults.set(self.aray, forKey: "SavedArray")
-            
-            self.tableView.reloadData()
-            
+//        let alert = UIAlertController(title: "Add New Event", message: "", preferredStyle: .alert)
+//        let action = UIAlertAction(title: "Add Event", style: .default) { (action) in
+////            self.aray.append(textField.text!)
+////            self.defaults.set(self.aray, forKey: "SavedArray")
+//
+//            self.tableView.reloadData()
+//
+//        }
+//        alert.addTextField { (alertTextField) in
+//            alertTextField.placeholder = "Enter an event name"
+////            textField = alertTextField
+//        }
+//
+//        alert.addAction(action)
+//        present(alert, animated: true, completion: nil)
+        selectedMode = "add"
+    }
+    
+    // MARK: Segue Stuff
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "toAddEvent") {
+            let destVC = segue.destination as! CreateEventController
+            destVC.delegate = self
+            if selectedMode == "edit" {
+                let data = sender! as! Event
+                destVC.id = data.id
+                destVC.name = data.name
+                destVC.datetime = data.dateOfEvent
+            }
         }
-        alert.addTextField { (alertTextField) in
-            alertTextField.placeholder = "Enter an event name"
-//            textField = alertTextField
-        }
-        
-        alert.addAction(action)
-        present(alert, animated: true, completion: nil)
     }
     
 }
 
+
+// MARK: SWIPE CELL
 extension EventTableController: SwipeTableViewCellDelegate {
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
         guard orientation == .right else { return nil }
         
         let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
             // handle action by updating model with deletion
+            let id = self.allEvents[indexPath.row].id
+            let result = self.db.delete(id: id)
+            if result == true {
+                self.allEvents = self.allEvents.filter{ $0.id != id }
+                tableView.beginUpdates()
+                tableView.deleteRows(at: [indexPath], with: .fade)
+                tableView.endUpdates()
+            }
         }
         
         // customize the action appearance
         deleteAction.image = UIImage(named: "trash")
         
-        return [deleteAction]
+        let editAction = SwipeAction(style: .default, title: "Edit") { action, indexPath in
+            // handle action by updating model with deletion
+            let event: Event = self.allEvents[indexPath.row]
+            self.selectedMode = "edit"
+            self.performSegue(withIdentifier: "toAddEvent", sender: event)
+        }
+        
+        // customize the action appearance
+        editAction.image = UIImage(named: "pencil-edit")
+        
+        return [deleteAction, editAction]
     }
 }
 
 extension EventTableController: UITableViewDataSourcePrefetching {
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-        <#code#>
+        
     }
-    
-    
+}
+
+// MARK: Protocol Delegate from CreateEventController
+
+extension EventTableController: EventDelegate {
+    func eventCreated() {
+        allEvents = db.queryAll()
+        tableView.reloadData()
+    }
 }
 

@@ -19,7 +19,7 @@ class DBManager {
     var db: FMDatabase;
     
     init() {
-        print(dataFilePath)
+        print(dataFilePath!)
         do {
             db = FMDatabase(url: dataFilePath)
             guard db.open() else {
@@ -41,9 +41,10 @@ class DBManager {
         do {
             let rs = try db.executeQuery(stmt, values: nil)
             while rs.next() {
+                let id = rs.longLongInt(forColumn: "ID")
                 let name = rs.string(forColumn: "name")!
                 let datetime = rs.longLongInt(forColumn: "when_db")
-                events.append(Event(name: name, dateOfEvent: Date(timeIntervalSince1970: Double(datetime/1000))))
+                events.append(Event(id: id, name: name, dateOfEvent: Date(timeIntervalSince1970: Double(datetime/1000))))
             }
         } catch {
             print(error)
@@ -51,6 +52,44 @@ class DBManager {
         
         return events
         
+    }
+    
+    func insert(name: String, datetime: Date) {
+        let stmt = "INSERT INTO events (name, when_db) VALUES (?, ?);"
+        
+        do {
+            
+            let unixTime: Double = datetime.timeIntervalSince1970 * 1000
+            
+            try db.executeUpdate(stmt, values: [name, unixTime])
+            print("inserted!")
+        } catch {
+            print(error)
+        }
+    }
+    
+    func delete(id: Int64) -> Bool {
+        let stmt = "DELETE FROM events WHERE ID = ?;"
+        do {
+            try db.executeUpdate(stmt, values: [id])
+            print("deleted")
+            return true
+        } catch {
+            print(error)
+        }
+        return false
+    }
+    
+    func update(id: Int64, name: String, datetime: Date) {
+        let stmt = "UPDATE events SET name = ?, when_db = ? WHERE ID = ?;"
+        
+        do {
+            let unixTime: Double = datetime.timeIntervalSince1970 * 1000
+            try db.executeUpdate(stmt, values: [name, unixTime, id])
+            print("updated!")
+        } catch {
+            print(error)
+        }
     }
     
     

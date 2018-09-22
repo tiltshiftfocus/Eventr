@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -36,7 +37,8 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="p3e-gi-wkE">
                             <color key="tintColor" red="0.20392156859999999" green="0.28627450980000002" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
-                                <action selector="addButtonPressed:" destination="pWn-ot-1Be" id="c9t-Qt-5YT"/>
+                                <action selector="addButtonPressed:" destination="pWn-ot-1Be" id="s3H-dz-Jun"/>
+                                <segue destination="eip-wb-N1M" kind="show" identifier="toAddEvent" id="LPB-Ab-HBC"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -44,6 +46,88 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oge-0I-Uby" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1006" y="124"/>
+        </scene>
+        <!--Add Event-->
+        <scene sceneID="BKg-On-lVB">
+            <objects>
+                <viewController title="Add Event" id="eip-wb-N1M" customClass="CreateEventController" customModule="Eventr" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wNt-fM-sVz">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cy1-yk-sNv">
+                                <rect key="frame" x="16" y="75" width="343" height="325"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="iaA-XZ-Ng3">
+                                        <rect key="frame" x="10" y="40" width="323" height="275"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xfb-qj-Ihw">
+                                        <rect key="frame" x="10" y="8" width="323" height="24"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <color key="textColor" red="0.1784731218" green="0.1715399789" blue="0.17730887949999999" alpha="0.55922645250000003" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Xfb-qj-Ihw" firstAttribute="top" secondItem="Cy1-yk-sNv" secondAttribute="top" constant="8" id="75y-it-QgY"/>
+                                    <constraint firstItem="Xfb-qj-Ihw" firstAttribute="leading" secondItem="Cy1-yk-sNv" secondAttribute="leading" constant="10" id="Tu5-Rd-0xZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="iaA-XZ-Ng3" secondAttribute="trailing" constant="10" id="Wte-7v-WMq"/>
+                                    <constraint firstAttribute="trailing" secondItem="Xfb-qj-Ihw" secondAttribute="trailing" constant="10" id="XQ8-4M-ay5"/>
+                                    <constraint firstItem="iaA-XZ-Ng3" firstAttribute="leading" secondItem="Cy1-yk-sNv" secondAttribute="leading" constant="10" id="ai1-Ls-juH"/>
+                                    <constraint firstItem="iaA-XZ-Ng3" firstAttribute="top" secondItem="Xfb-qj-Ihw" secondAttribute="bottom" constant="8" id="leY-Rg-4K8"/>
+                                    <constraint firstAttribute="bottom" secondItem="iaA-XZ-Ng3" secondAttribute="bottom" constant="10" id="pUs-vS-o7p"/>
+                                    <constraint firstItem="iaA-XZ-Ng3" firstAttribute="top" secondItem="Xfb-qj-Ihw" secondAttribute="bottom" constant="8" id="yMJ-06-KJP"/>
+                                </constraints>
+                            </view>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="WN2-yV-2TH">
+                                <rect key="frame" x="16" y="418" width="343" height="158"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="158" id="vl6-lD-MNn"/>
+                                </constraints>
+                                <date key="date" timeIntervalSinceReferenceDate="559238807.55845797">
+                                    <!--2018-09-21 16:06:47 +0000-->
+                                </date>
+                                <connections>
+                                    <action selector="dateTimePickerChanged:" destination="eip-wb-N1M" eventType="valueChanged" id="328-ob-1kF"/>
+                                </connections>
+                            </datePicker>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ua-Sa-dxe">
+                                <rect key="frame" x="7" y="594" width="361" height="36"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="onSaveButtonPressed:" destination="eip-wb-N1M" eventType="touchUpInside" id="VjU-bg-Hlo"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Cy1-yk-sNv" firstAttribute="top" secondItem="exr-2A-DlO" secondAttribute="top" constant="11" id="1Yp-4c-OTd"/>
+                            <constraint firstItem="WN2-yV-2TH" firstAttribute="top" secondItem="Cy1-yk-sNv" secondAttribute="bottom" constant="18" id="2iA-CZ-D0v"/>
+                            <constraint firstItem="exr-2A-DlO" firstAttribute="trailing" secondItem="1ua-Sa-dxe" secondAttribute="trailing" constant="7" id="9Oh-DF-pXK"/>
+                            <constraint firstItem="1ua-Sa-dxe" firstAttribute="leading" secondItem="exr-2A-DlO" secondAttribute="leading" constant="7" id="KoD-0E-yG7"/>
+                            <constraint firstItem="Cy1-yk-sNv" firstAttribute="leading" secondItem="exr-2A-DlO" secondAttribute="leading" constant="16" id="Soa-ZD-ovV"/>
+                            <constraint firstItem="exr-2A-DlO" firstAttribute="trailing" secondItem="Cy1-yk-sNv" secondAttribute="trailing" constant="16" id="iXt-zk-VNy"/>
+                            <constraint firstItem="exr-2A-DlO" firstAttribute="bottom" secondItem="1ua-Sa-dxe" secondAttribute="bottom" constant="37" id="lZw-wD-ksn"/>
+                            <constraint firstItem="WN2-yV-2TH" firstAttribute="leading" secondItem="exr-2A-DlO" secondAttribute="leading" constant="16" id="oJD-kt-0Ek"/>
+                            <constraint firstItem="1ua-Sa-dxe" firstAttribute="top" secondItem="WN2-yV-2TH" secondAttribute="bottom" constant="18" id="oWw-H7-f86"/>
+                            <constraint firstItem="1ua-Sa-dxe" firstAttribute="top" secondItem="WN2-yV-2TH" secondAttribute="bottom" constant="18" id="qHo-uG-SnT"/>
+                            <constraint firstItem="exr-2A-DlO" firstAttribute="bottom" secondItem="Cy1-yk-sNv" secondAttribute="bottom" constant="267" id="qX4-iy-HII"/>
+                            <constraint firstItem="exr-2A-DlO" firstAttribute="trailing" secondItem="WN2-yV-2TH" secondAttribute="trailing" constant="16" id="yTO-mR-PsL"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="exr-2A-DlO"/>
+                    </view>
+                    <connections>
+                        <outlet property="dateTimePicker" destination="WN2-yV-2TH" id="pET-Bt-hLe"/>
+                        <outlet property="eventNameTextView" destination="iaA-XZ-Ng3" id="3rw-sm-JiR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mhC-ZL-vea" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1733.5999999999999" y="123.68815592203899"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="91q-On-nkz">
