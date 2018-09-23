@@ -22,14 +22,20 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var allEvents = [Event]()
     var selectedMode = "add"
     
+    @IBAction func menuButtonPressed(_ sender: UIButton) {
+        self.slideMenuController()?.openLeft()
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTableTimer), userInfo: nil, repeats: true)
-        
         searchBar.delegate = self
-        
         dateFormatter.locale = Locale(identifier: "en_US")
-        
         setUpTableView()
         allEvents = db.queryAll()
     }

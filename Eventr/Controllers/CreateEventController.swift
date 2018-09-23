@@ -22,9 +22,13 @@ class CreateEventController: UIViewController {
     var name: String = ""
     var datetime: Date = Date()
 
-    @IBOutlet weak var eventNameTextView: UITextView!
+    @IBOutlet weak var eventNameTextView: UITextField!
     @IBOutlet weak var dateTimePicker: UIDatePicker!
     @IBOutlet weak var saveButton: UIButton!
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,27 +68,32 @@ class CreateEventController: UIViewController {
     
     @IBAction func onSaveButtonPressed(_ sender: UIButton) {
         if id == -1 {
-            db.insert(name: eventNameTextView.text, datetime: datetime)
+            db.insert(name: eventNameTextView.text!, datetime: datetime)
         } else if id > 0 {
-            db.update(id: id, name: eventNameTextView.text, datetime: datetime)
+            db.update(id: id, name: eventNameTextView.text!, datetime: datetime)
         }
-        delegate?.eventCreated(eventName: eventNameTextView.text)
-        navigationController?.popViewController(animated: true)
+        delegate?.eventCreated(eventName: eventNameTextView.text!)
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func backButtonPressed(_ sender: UIButton) {  
+        dismiss(animated: true, completion: nil)
     }
 }
 
 // MARK: TextView Delegate
 
-extension CreateEventController: UITextViewDelegate {
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        if text == "\n" {
+extension CreateEventController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if string == "\n" {
             eventNameTextView.resignFirstResponder()
             return false
         }
         return true
     }
     
-    func textViewDidChange(_ textView: UITextView) {
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
         validate()
     }
     
