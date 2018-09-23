@@ -33,3 +33,12 @@ extension UIColor {
         )
     }
 }
+
+extension Calendar {
+    static let gregorian = Calendar(identifier: .gregorian)
+}
+extension Date {
+    var startOfWeek: Date? {
+        return Calendar.gregorian.date(from: Calendar.gregorian.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self))
+    }
+}
