@@ -13,7 +13,7 @@ protocol EventDelegate {
     func wentBack()
 }
 
-class CreateEventController: UIViewController {
+class CreateEventController: UIViewController, UIGestureRecognizerDelegate {
     
     var delegate: EventDelegate?
     let db = DBManager.db;
@@ -32,17 +32,14 @@ class CreateEventController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if id > -1 {
-            self.title = "Update Event"
-        }
-        
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         
         initView()
         validate()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
+    
+    override func viewDidDisappear(_ animated: Bool) {
         delegate?.wentBack()
     }
     

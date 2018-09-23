@@ -140,6 +140,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "toAddEvent") {
+            self.slideMenuController()?.removeLeftGestures()
             timer?.invalidate()
             let destVC = segue.destination as! CreateEventController
             destVC.delegate = self
@@ -213,6 +214,7 @@ extension EventViewController: EventDelegate {
     }
     
     func wentBack() {
+        self.slideMenuController()?.addLeftGestures()
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTableTimer), userInfo: nil, repeats: true)
     }
 }

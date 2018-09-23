@@ -14,7 +14,7 @@ class ContainerViewController: SlideMenuController {
     override func awakeFromNib() {
         
         SlideMenuOptions.animationDuration = 0.2
-        SlideMenuOptions.contentViewScale = 1
+        SlideMenuOptions.contentViewScale = 0.999
         
         
         if let controller = self.storyboard?.instantiateViewController(withIdentifier: "Main") {
