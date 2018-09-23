@@ -11,7 +11,7 @@ import UIKit
 @IBDesignable
 class CardView: UIView {
     
-    var cornerRadius: CGFloat? = 5
+    var cornerRadius: CGFloat? = 3
     
     var shadowOffsetWidth: Int? = 0
     var shadowOffsetHeight: Int? = 2

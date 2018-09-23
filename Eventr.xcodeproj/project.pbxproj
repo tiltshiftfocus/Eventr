@@ -84,15 +84,23 @@
 		C43CCB81215295D300BBC43A /* Eventr */ = {
 			isa = PBXGroup;
 			children = (
+				C480E3392157249600421BE4 /* Designables */,
 				C4A2846B2154A57A00054E1B /* Managers */,
 				C4C9D306215381D200172322 /* Models */,
 				C4C9D305215381CC00172322 /* Views */,
 				C4C9D304215381C500172322 /* Controllers */,
 				C43CCB89215295D400BBC43A /* Assets.xcassets */,
 				C43CCB8E215295D400BBC43A /* Info.plist */,
-				C480E3372156A23D00421BE4 /* CardView.swift */,
 			);
 			path = Eventr;
+			sourceTree = "<group>";
+		};
+		C480E3392157249600421BE4 /* Designables */ = {
+			isa = PBXGroup;
+			children = (
+				C480E3372156A23D00421BE4 /* CardView.swift */,
+			);
+			path = Designables;
 			sourceTree = "<group>";
 		};
 		C4A2846B2154A57A00054E1B /* Managers */ = {

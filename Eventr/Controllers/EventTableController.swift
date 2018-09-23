@@ -27,8 +27,6 @@ class EventTableController: UIViewController, UITableViewDelegate, UITableViewDa
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTableTimer), userInfo: nil, repeats: true)
         
         searchBar.delegate = self
-        tableView.delegate = self
-        tableView.dataSource = self
         
         dateFormatter.locale = Locale(identifier: "en_US")
         
@@ -41,6 +39,9 @@ class EventTableController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.estimatedRowHeight = 60.0
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.separatorStyle = .none
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.backgroundColor = UIColor.clear
     }
     
     // MARK: Table Stuff
