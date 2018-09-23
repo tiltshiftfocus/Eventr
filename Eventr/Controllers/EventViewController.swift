@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SwipeCellKit
 import SVProgressHUD
 
 class EventViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {

@@ -37,6 +37,7 @@ class CreateEventController: UIViewController {
             self.title = "Update Event"
         }
         
+        
         initView()
         validate()
     }
@@ -50,6 +51,7 @@ class CreateEventController: UIViewController {
         eventNameTextView.layer.borderColor = UIColor.gray.cgColor
         eventNameTextView.layer.borderWidth = 0.3
         eventNameTextView.layer.cornerRadius = 5.0
+        eventNameTextView.autocapitalizationType = .sentences
         
         eventNameTextView.delegate = self
         eventNameTextView.text = name
@@ -73,11 +75,13 @@ class CreateEventController: UIViewController {
             db.update(id: id, name: eventNameTextView.text!, datetime: datetime)
         }
         delegate?.eventCreated(eventName: eventNameTextView.text!)
-        dismiss(animated: true, completion: nil)
+//        dismiss(animated: true, completion: nil)
+        navigationController?.popViewController(animated: true)
     }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {  
-        dismiss(animated: true, completion: nil)
+//        dismiss(animated: true, completion: nil)
+        navigationController?.popViewController(animated: true)
     }
 }
 
