@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		AC7E7B6E11564F2D37EE97C2 /* Pods_Eventr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9EEADF749E45B9CCC24F958 /* Pods_Eventr.framework */; };
 		C43CCB83215295D300BBC43A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43CCB82215295D300BBC43A /* AppDelegate.swift */; };
-		C43CCB85215295D300BBC43A /* EventTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43CCB84215295D300BBC43A /* EventTableController.swift */; };
+		C43CCB85215295D300BBC43A /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43CCB84215295D300BBC43A /* EventViewController.swift */; };
 		C43CCB88215295D300BBC43A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C43CCB86215295D300BBC43A /* Main.storyboard */; };
 		C43CCB8A215295D400BBC43A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C43CCB89215295D400BBC43A /* Assets.xcassets */; };
 		C43CCB8D215295D400BBC43A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C43CCB8B215295D400BBC43A /* LaunchScreen.storyboard */; };
@@ -26,7 +26,7 @@
 		601456745D71E2040970BAC2 /* Pods-Eventr.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eventr.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Eventr/Pods-Eventr.debug.xcconfig"; sourceTree = "<group>"; };
 		C43CCB7F215295D300BBC43A /* Eventr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Eventr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C43CCB82215295D300BBC43A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C43CCB84215295D300BBC43A /* EventTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableController.swift; sourceTree = "<group>"; };
+		C43CCB84215295D300BBC43A /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		C43CCB87215295D300BBC43A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C43CCB89215295D400BBC43A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C43CCB8C215295D400BBC43A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -117,7 +117,7 @@
 			children = (
 				C43CCBA221529EC500BBC43A /* CustomEventCell.swift */,
 				C43CCB82215295D300BBC43A /* AppDelegate.swift */,
-				C43CCB84215295D300BBC43A /* EventTableController.swift */,
+				C43CCB84215295D300BBC43A /* EventViewController.swift */,
 				C4688AE521554787009326B2 /* CreateEventController.swift */,
 			);
 			path = Controllers;
@@ -228,12 +228,14 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Eventr/Pods-Eventr-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/SlideMenuControllerSwift/SlideMenuControllerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SwipeCellKit/SwipeCellKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SlideMenuControllerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwipeCellKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -267,7 +269,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4C9D308215381F800172322 /* Event.swift in Sources */,
-				C43CCB85215295D300BBC43A /* EventTableController.swift in Sources */,
+				C43CCB85215295D300BBC43A /* EventViewController.swift in Sources */,
 				C43CCB83215295D300BBC43A /* AppDelegate.swift in Sources */,
 				C4688AE82155C028009326B2 /* Utils.swift in Sources */,
 				C43CCBA421529EC500BBC43A /* CustomEventCell.swift in Sources */,

@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="XIk-1s-VPH">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -13,13 +9,13 @@
         <!--Eventr-->
         <scene sceneID="Ict-90-zjy">
             <objects>
-                <viewController id="OnG-p2-Buh" customClass="EventTableController" customModule="Eventr" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="OnG-p2-Buh" customClass="EventViewController" customModule="Eventr" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ple-S2-OZN">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar hidden="YES" contentMode="redraw" placeholder="Search" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SRy-eM-Ou9">
-                                <rect key="frame" x="0.0" y="305" width="375" height="56"/>
+                                <rect key="frame" x="0.0" y="305" width="600" height="56"/>
                                 <color key="barTintColor" red="0.64705882349999999" green="0.83921568629999999" blue="0.65490196079999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <scopeButtonTitles>
@@ -28,34 +24,34 @@
                                 </scopeButtonTitles>
                             </searchBar>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="night_sand_digital" translatesAutoresizingMaskIntoConstraints="NO" id="0GH-jK-B4o">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="667"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="667" id="j4Y-34-agF"/>
                                 </constraints>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="edG-Dk-k7L">
-                                <rect key="frame" x="4" y="103" width="367" height="564"/>
+                                <rect key="frame" x="4" y="103" width="592" height="497"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EventItemCell" id="eP3-nw-Zy3" customClass="CustomEventCell" customModule="Eventr" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="367" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="592" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eP3-nw-Zy3" id="xEX-tt-tar">
-                                            <rect key="frame" x="0.0" y="0.0" width="367" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="592" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OYw-3c-L8J">
-                                <rect key="frame" x="118" y="585" width="140" height="70"/>
+                                <rect key="frame" x="230.5" y="518" width="140" height="70"/>
                                 <state key="normal" image="addnewbutton"/>
                                 <connections>
                                     <segue destination="eip-wb-N1M" kind="show" identifier="toAddEvent" id="2CR-kv-dhC"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EVENTR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lDs-bH-cgV">
-                                <rect key="frame" x="0.0" y="31" width="375" height="47"/>
+                                <rect key="frame" x="0.0" y="31" width="600" height="47"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Heavy" family="Avenir Next" pointSize="34"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -99,20 +95,20 @@
             <objects>
                 <viewController title="Add Event" id="eip-wb-N1M" customClass="CreateEventController" customModule="Eventr" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wNt-fM-sVz">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cy1-yk-sNv">
-                                <rect key="frame" x="16" y="31" width="343" height="369"/>
+                                <rect key="frame" x="16" y="31" width="568" height="302"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="iaA-XZ-Ng3">
-                                        <rect key="frame" x="0.0" y="40" width="343" height="329"/>
+                                        <rect key="frame" x="0.0" y="40" width="568" height="262"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xfb-qj-Ihw">
-                                        <rect key="frame" x="4" y="8" width="335" height="24"/>
+                                        <rect key="frame" x="4" y="8" width="560" height="24"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <color key="textColor" red="0.1784731218" green="0.1715399789" blue="0.17730887949999999" alpha="0.55922645250000003" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
@@ -130,7 +126,7 @@
                                 </constraints>
                             </view>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="WN2-yV-2TH">
-                                <rect key="frame" x="16" y="418" width="343" height="158"/>
+                                <rect key="frame" x="16" y="351" width="568" height="158"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="158" id="vl6-lD-MNn"/>
                                 </constraints>
@@ -142,7 +138,7 @@
                                 </connections>
                             </datePicker>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ua-Sa-dxe">
-                                <rect key="frame" x="7" y="594" width="361" height="36"/>
+                                <rect key="frame" x="7" y="527" width="586" height="36"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                 <state key="normal" title="Save"/>
                                 <connections>
@@ -184,6 +180,7 @@
                     <toolbarItems/>
                     <nil key="simulatedTopBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="HwR-jH-XlB">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>

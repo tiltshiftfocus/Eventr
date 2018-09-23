@@ -10,7 +10,7 @@ import UIKit
 import SwipeCellKit
 import SVProgressHUD
 
-class EventTableController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class EventViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
@@ -194,7 +194,7 @@ class EventTableController: UIViewController, UITableViewDelegate, UITableViewDa
 
 // MARK: Protocol Delegate from CreateEventController
 
-extension EventTableController: EventDelegate {
+extension EventViewController: EventDelegate {
     func eventCreated(eventName: String) {
         SVProgressHUD.setMinimumDismissTimeInterval(1.0)
         SVProgressHUD.setMaximumDismissTimeInterval(1.8)
@@ -212,7 +212,7 @@ extension EventTableController: EventDelegate {
     }
 }
 
-extension EventTableController: UISearchBarDelegate {
+extension EventViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         allEvents = db.query(text: searchBar.text!)
         tableView.reloadData()
