@@ -31,10 +31,11 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTableTimer), userInfo: nil, repeats: true)
+        
         searchBar.delegate = self
         dateFormatter.locale = Locale(identifier: "en_US")
+        
         setUpTableView()
         allEvents = db.queryAll()
     }

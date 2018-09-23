@@ -21,6 +21,7 @@
 		C480E33B21572BF000421BE4 /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C480E33A21572BF000421BE4 /* LeftViewController.swift */; };
 		C480E33D21572D7400421BE4 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C480E33C21572D7400421BE4 /* ContainerViewController.swift */; };
 		C49283662157388200131B74 /* EventNameTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49283652157388200131B74 /* EventNameTextField.swift */; };
+		C49283682157608100131B74 /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49283672157608100131B74 /* CustomSearchBar.swift */; };
 		C4A284612154884500054E1B /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A284602154884500054E1B /* DBManager.swift */; };
 		C4C9D308215381F800172322 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C9D307215381F800172322 /* Event.swift */; };
 /* End PBXBuildFile section */
@@ -42,6 +43,7 @@
 		C480E33A21572BF000421BE4 /* LeftViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
 		C480E33C21572D7400421BE4 /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		C49283652157388200131B74 /* EventNameTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventNameTextField.swift; sourceTree = "<group>"; };
+		C49283672157608100131B74 /* CustomSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchBar.swift; sourceTree = "<group>"; };
 		C4A284602154884500054E1B /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
 		C4C9D307215381F800172322 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		EF7DEB37C0C270CBE1D4E978 /* Pods-Eventr.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eventr.release.xcconfig"; path = "Pods/Target Support Files/Pods-Eventr/Pods-Eventr.release.xcconfig"; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 			children = (
 				C480E3372156A23D00421BE4 /* CardView.swift */,
 				C49283652157388200131B74 /* EventNameTextField.swift */,
+				C49283672157608100131B74 /* CustomSearchBar.swift */,
 			);
 			path = Designables;
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 			files = (
 				C4C9D308215381F800172322 /* Event.swift in Sources */,
 				C43CCB85215295D300BBC43A /* EventViewController.swift in Sources */,
+				C49283682157608100131B74 /* CustomSearchBar.swift in Sources */,
 				C480E33D21572D7400421BE4 /* ContainerViewController.swift in Sources */,
 				C43CCB83215295D300BBC43A /* AppDelegate.swift in Sources */,
 				C4688AE82155C028009326B2 /* Utils.swift in Sources */,
