@@ -57,28 +57,39 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         refreshControl.tintColor = UIColor.white
     }
     
+    // MARK: DATA
+    
     @objc func refresh() {
         getEvents()
     }
     
     func getEvents() {
-        allEvents = db.queryAll(for: "main")
-        if allEvents.count == 0 {
-            UIView.animate(withDuration: 0.5) {
-                self.tableView.alpha = 0
-                self.emptyListView.alpha = 1
-                
-            }
+        if searchBar.text?.count == 0 {
+            allEvents = db.queryAll(for: "main")
+            updateView()
         } else {
-            UIView.animate(withDuration: 0.5) {
-                self.tableView.alpha = 1
-                self.emptyListView.alpha = 0
-            }
+            allEvents = db.query(text: searchBar.text!, for: "main")
         }
+        
         
         self.refreshControl.endRefreshing()
         tableView.reloadData()
         
+    }
+    
+    func updateView() {
+        if allEvents.count == 0 {
+            self.tableView.alpha = 0
+            UIView.animate(withDuration: 0.5) {
+                self.emptyListView.alpha = 1
+                
+            }
+        } else {
+            self.emptyListView.alpha = 0
+            UIView.animate(withDuration: 0.5) {
+                self.tableView.alpha = 1
+            }
+        }
     }
     
     // MARK: Table Stuff
@@ -135,7 +146,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 tableView.beginUpdates()
                 tableView.deleteRows(at: [indexPath], with: .fade)
                 tableView.endUpdates()
-                self.getEvents()
+                self.updateView()
             }
         }
         deleteAction.backgroundColor = UIColor.red
@@ -225,11 +236,7 @@ extension EventViewController: EventDelegate {
 //        SVProgressHUD.setMinimumDismissTimeInterval(1.0)
 //        SVProgressHUD.setMaximumDismissTimeInterval(1.8)
 //        SVProgressHUD.showSuccess(withStatus: "Event \(eventName) Created")
-        if searchBar.text?.count == 0 {
-            getEvents()
-        } else {
-            allEvents = db.query(text: searchBar.text!, for: "main")
-        }
+        getEvents()
     }
     
     func wentBack() {
@@ -240,8 +247,7 @@ extension EventViewController: EventDelegate {
 
 extension EventViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        allEvents = db.query(text: searchBar.text!, for: "main")
-        tableView.reloadData()
+        getEvents()
         searchBar.resignFirstResponder()
     }
     

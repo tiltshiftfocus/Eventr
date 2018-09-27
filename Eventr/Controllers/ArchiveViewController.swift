@@ -42,19 +42,28 @@ class ArchiveViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func getEvents() {
-        allEvents = db.queryAll(for: "archive")
+        if searchBar.text?.count == 0 {
+            allEvents = db.queryAll(for: "archive")
+            updateView()
+        } else {
+            allEvents = db.query(text: searchBar.text!, for: "archive")
+        }
+        tableView.reloadData()
+        
+    }
+    
+    func updateView() {
         if allEvents.count == 0 {
+            self.tableView.alpha = 0
             UIView.animate(withDuration: 0.5) {
-                self.tableView.alpha = 0
                 self.emptyListView.alpha = 1
                 
             }
         } else {
+            self.emptyListView.alpha = 0
             UIView.animate(withDuration: 0.5) {
                 self.tableView.alpha = 1
-                self.emptyListView.alpha = 0
             }
-            
         }
     }
     
@@ -101,7 +110,7 @@ class ArchiveViewController: UIViewController, UITableViewDelegate, UITableViewD
                 tableView.beginUpdates()
                 tableView.deleteRows(at: [indexPath], with: .fade)
                 tableView.endUpdates()
-                self.getEvents()
+                self.updateView()
             }
         }
         deleteAction.backgroundColor = UIColor.red
@@ -115,7 +124,7 @@ class ArchiveViewController: UIViewController, UITableViewDelegate, UITableViewD
                 tableView.beginUpdates()
                 tableView.deleteRows(at: [indexPath], with: .fade)
                 tableView.endUpdates()
-                self.getEvents()
+                self.updateView()
             }
         }
         unarchiveAction.backgroundColor = UIColor(rgb: 0xbbdefb)
@@ -130,15 +139,13 @@ class ArchiveViewController: UIViewController, UITableViewDelegate, UITableViewD
 
 extension ArchiveViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        allEvents = db.query(text: searchBar.text!, for: "archive")
-        tableView.reloadData()
+        getEvents()
         searchBar.resignFirstResponder()
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchBar.text?.count == 0 {
             getEvents()
-            tableView.reloadData()
             searchBar.resignFirstResponder()
         }
     }
