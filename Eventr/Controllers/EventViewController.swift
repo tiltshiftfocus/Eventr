@@ -109,9 +109,9 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
+        let deleteAction = UITableViewRowAction(style: .destructive, title: "Archive") { (action, indexPath) in
             let id = self.allEvents[indexPath.row].id
-            let result = self.db.delete(id: id)
+            let result = self.db.archive(id: id)
             if result == true {
                 self.allEvents = self.allEvents.filter{ $0.id != id }
                 tableView.beginUpdates()

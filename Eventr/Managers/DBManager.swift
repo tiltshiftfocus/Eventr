@@ -16,8 +16,6 @@ class DBManager {
     
     let createStmt = "CREATE TABLE IF NOT EXISTS events ( ID integer PRIMARY KEY, name text NOT NULL, when_db integer NOT NULL DEFAULT(CAST((julianday('now') - 2440587.5)*86400000 AS INTEGER)), image blob, isAvailable integer DEFAULT(1));"
     
-    
-    
     init() {
         print(dataFilePath!)
         do {
@@ -82,7 +80,35 @@ class DBManager {
     
     func delete(id: Int64) -> Bool {
         let db = self.openDB()
+        let stmt = "DELETE FROM events WHERE ID = ?;"
+        do {
+            try db.executeUpdate(stmt, values: [id])
+            print("deleted")
+            db.close()
+            return true
+        } catch {
+            print(error)
+        }
+        return false
+    }
+    
+    func archive(id: Int64) -> Bool {
+        let db = self.openDB()
         let stmt = "UPDATE events SET isAvailable = 0 WHERE ID = ?;"
+        do {
+            try db.executeUpdate(stmt, values: [id])
+            print("archived")
+            db.close()
+            return true
+        } catch {
+            print(error)
+        }
+        return false
+    }
+    
+    func unarchive(id: Int64) -> Bool {
+        let db = self.openDB()
+        let stmt = "UPDATE events SET isAvailable = 1 WHERE ID = ?;"
         do {
             try db.executeUpdate(stmt, values: [id])
             print("deleted")
