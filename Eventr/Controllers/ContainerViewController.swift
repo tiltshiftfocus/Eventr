@@ -13,6 +13,7 @@ class ContainerViewController: SlideMenuController {
     
     override func awakeFromNib() {
         
+        SlideMenuOptions.leftViewWidth = 220.0
         SlideMenuOptions.animationDuration = 0.2
         SlideMenuOptions.contentViewScale = 0.999
         

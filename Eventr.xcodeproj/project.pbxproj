@@ -15,6 +15,8 @@
 		C43CCB8D215295D400BBC43A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C43CCB8B215295D400BBC43A /* LaunchScreen.storyboard */; };
 		C43CCBA421529EC500BBC43A /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43CCBA221529EC500BBC43A /* EventCell.swift */; };
 		C43CCBA521529EC500BBC43A /* EventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C43CCBA321529EC500BBC43A /* EventCell.xib */; };
+		C45C26BF215CD16600363ACB /* ArchiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45C26BE215CD16600363ACB /* ArchiveViewController.swift */; };
+		C45C26C1215CD92000363ACB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45C26C0215CD92000363ACB /* Extensions.swift */; };
 		C4688AE621554787009326B2 /* CreateEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4688AE521554787009326B2 /* CreateEventController.swift */; };
 		C4688AE82155C028009326B2 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4688AE72155C028009326B2 /* Utils.swift */; };
 		C480E3382156A23D00421BE4 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C480E3372156A23D00421BE4 /* CardView.swift */; };
@@ -37,6 +39,8 @@
 		C43CCB8E215295D400BBC43A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C43CCBA221529EC500BBC43A /* EventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
 		C43CCBA321529EC500BBC43A /* EventCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventCell.xib; sourceTree = "<group>"; };
+		C45C26BE215CD16600363ACB /* ArchiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveViewController.swift; sourceTree = "<group>"; };
+		C45C26C0215CD92000363ACB /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		C4688AE521554787009326B2 /* CreateEventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventController.swift; sourceTree = "<group>"; };
 		C4688AE72155C028009326B2 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		C480E3372156A23D00421BE4 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
@@ -118,6 +122,7 @@
 			children = (
 				C4A284602154884500054E1B /* DBManager.swift */,
 				C4688AE72155C028009326B2 /* Utils.swift */,
+				C45C26C0215CD92000363ACB /* Extensions.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -131,6 +136,7 @@
 				C4688AE521554787009326B2 /* CreateEventController.swift */,
 				C480E33A21572BF000421BE4 /* LeftViewController.swift */,
 				C480E33C21572D7400421BE4 /* ContainerViewController.swift */,
+				C45C26BE215CD16600363ACB /* ArchiveViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -282,6 +288,7 @@
 			files = (
 				C4C9D308215381F800172322 /* Event.swift in Sources */,
 				C43CCB85215295D300BBC43A /* EventViewController.swift in Sources */,
+				C45C26BF215CD16600363ACB /* ArchiveViewController.swift in Sources */,
 				C49283682157608100131B74 /* CustomSearchBar.swift in Sources */,
 				C480E33D21572D7400421BE4 /* ContainerViewController.swift in Sources */,
 				C43CCB83215295D300BBC43A /* AppDelegate.swift in Sources */,
@@ -292,6 +299,7 @@
 				C49283662157388200131B74 /* EventNameTextField.swift in Sources */,
 				C480E3382156A23D00421BE4 /* CardView.swift in Sources */,
 				C4A284612154884500054E1B /* DBManager.swift in Sources */,
+				C45C26C1215CD92000363ACB /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

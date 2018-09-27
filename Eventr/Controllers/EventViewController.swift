@@ -32,10 +32,11 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         timer = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(updateTableTimer), userInfo: nil, repeats: true)
         emptyListView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(addEvent)))
-    
         dateFormatter.locale = Locale(identifier: "en_US")
+        searchBar.delegate = self
         
         setUpTableView()
         getEvents()
@@ -47,7 +48,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func getEvents() {
-        allEvents = db.queryAll()
+        allEvents = db.queryAll(for: "main")
         if allEvents.count == 0 {
             UIView.animate(withDuration: 0.5) {
                 self.tableView.alpha = 0
@@ -204,13 +205,13 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
 extension EventViewController: EventDelegate {
     func eventCreated(eventName: String) {
-        SVProgressHUD.setMinimumDismissTimeInterval(1.0)
-        SVProgressHUD.setMaximumDismissTimeInterval(1.8)
-        SVProgressHUD.showSuccess(withStatus: "Event \(eventName) Created")
+//        SVProgressHUD.setMinimumDismissTimeInterval(1.0)
+//        SVProgressHUD.setMaximumDismissTimeInterval(1.8)
+//        SVProgressHUD.showSuccess(withStatus: "Event \(eventName) Created")
         if searchBar.text?.count == 0 {
             getEvents()
         } else {
-            allEvents = db.query(text: searchBar.text!)
+            allEvents = db.query(text: searchBar.text!, for: "main")
         }
         tableView.reloadData()
     }
@@ -223,7 +224,7 @@ extension EventViewController: EventDelegate {
 
 extension EventViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        allEvents = db.query(text: searchBar.text!)
+        allEvents = db.query(text: searchBar.text!, for: "main")
         tableView.reloadData()
         searchBar.resignFirstResponder()
     }

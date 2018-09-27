@@ -42,12 +42,17 @@ class DBManager {
         return db
     }
     
-    func queryAll() -> [Event] {
+    func queryAll(for type: String) -> [Event] {
         let db = self.openDB()
-        let stmt = "SELECT * FROM events WHERE isAvailable = 1 ORDER BY when_db desc;"
+        var stmt: String?
+        if type == "main" {
+            stmt = "SELECT * FROM events WHERE isAvailable = 1 ORDER BY when_db desc;"
+        } else if type == "archive" {
+            stmt = "SELECT * FROM events WHERE isAvailable = 0 ORDER BY when_db desc;"
+        }
         var events = [Event]()
         do {
-            let rs = try db.executeQuery(stmt, values: nil)
+            let rs = try db.executeQuery(stmt!, values: nil)
             while rs.next() {
                 let id = rs.longLongInt(forColumn: "ID")
                 let name = rs.string(forColumn: "name")!
@@ -62,6 +67,33 @@ class DBManager {
         return events
         
     }
+    
+    func query(text: String, for type: String) -> [Event] {
+        let db = self.openDB()
+        var stmt: String?
+        if type == "main" {
+            stmt = "SELECT * FROM events WHERE isAvailable = 1 AND name LIKE '%\(text)%' ORDER BY when_db desc;"
+        } else if type == "archive" {
+            stmt = "SELECT * FROM events WHERE isAvailable = 0 AND name LIKE '%\(text)%' ORDER BY when_db desc;"
+        }
+        var events = [Event]()
+        do {
+            let rs = try db.executeQuery(stmt!, values: nil)
+            while rs.next() {
+                let id = rs.longLongInt(forColumn: "ID")
+                let name = rs.string(forColumn: "name")!
+                let datetime = rs.longLongInt(forColumn: "when_db")
+                events.append(Event(id: id, name: name, dateOfEvent: Date(timeIntervalSince1970: Double(datetime/1000))))
+            }
+            db.close()
+        } catch {
+            print(error)
+        }
+        
+        return events
+    }
+    
+    
     
     func insert(name: String, datetime: Date) {
         let db = self.openDB()
@@ -133,26 +165,6 @@ class DBManager {
         } catch {
             print(error)
         }
-    }
-    
-    func query(text: String) -> [Event] {
-        let db = self.openDB()
-        let stmt = "SELECT * FROM events WHERE isAvailable = 1 AND name LIKE '%\(text)%' ORDER BY when_db desc;"
-        var events = [Event]()
-        do {
-            let rs = try db.executeQuery(stmt, values: nil)
-            while rs.next() {
-                let id = rs.longLongInt(forColumn: "ID")
-                let name = rs.string(forColumn: "name")!
-                let datetime = rs.longLongInt(forColumn: "when_db")
-                events.append(Event(id: id, name: name, dateOfEvent: Date(timeIntervalSince1970: Double(datetime/1000))))
-            }
-            db.close()
-        } catch {
-            print(error)
-        }
-        
-        return events
     }
     
     
