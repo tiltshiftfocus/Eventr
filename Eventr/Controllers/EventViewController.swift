@@ -12,6 +12,7 @@ import SVProgressHUD
 class EventViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var emptyListView: UIView!
     
     let dateFormatter = DateFormatter()
     let defaults = UserDefaults.standard
@@ -31,18 +32,35 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTableTimer), userInfo: nil, repeats: true)
-        
-        searchBar.delegate = self
+        timer = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(updateTableTimer), userInfo: nil, repeats: true)
+        emptyListView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(addEvent)))
+    
         dateFormatter.locale = Locale(identifier: "en_US")
         
         setUpTableView()
-        allEvents = db.queryAll()
+        getEvents()
     }
     
     func setUpTableView() {
         tableView.register(UINib(nibName: "EventCell", bundle: nil), forCellReuseIdentifier: "EventCell")
         tableView.backgroundColor = UIColor.clear
+    }
+    
+    func getEvents() {
+        allEvents = db.queryAll()
+        if allEvents.count == 0 {
+            UIView.animate(withDuration: 0.5) {
+                self.tableView.alpha = 0
+                self.emptyListView.alpha = 1
+                
+            }
+        } else {
+            UIView.animate(withDuration: 0.5) {
+                self.tableView.alpha = 1
+                self.emptyListView.alpha = 0
+            }
+            
+        }
     }
     
     // MARK: Table Stuff
@@ -87,19 +105,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
-//        let currentCell = tableView.cellForRow(at: indexPath)
-//
-//        if currentCell?.accessoryType == .checkmark {
-//           currentCell?.accessoryType = .none
-//        } else {
-//           currentCell?.accessoryType = .checkmark
-//        }
         tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
@@ -111,7 +117,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 tableView.beginUpdates()
                 tableView.deleteRows(at: [indexPath], with: .fade)
                 tableView.endUpdates()
-                self.allEvents = self.db.queryAll()
+                self.getEvents()
             }
         }
         deleteAction.backgroundColor = UIColor.red
@@ -127,12 +133,12 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return [deleteAction, editAction]
         
     }
-
-    @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
-        selectedMode = "add"
-    }
     
     // MARK: Segue Stuff
+    
+    @objc func addEvent() {
+        performSegue(withIdentifier: "toAddEvent", sender: self)
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "toAddEvent") {
@@ -202,7 +208,7 @@ extension EventViewController: EventDelegate {
         SVProgressHUD.setMaximumDismissTimeInterval(1.8)
         SVProgressHUD.showSuccess(withStatus: "Event \(eventName) Created")
         if searchBar.text?.count == 0 {
-            allEvents = db.queryAll()
+            getEvents()
         } else {
             allEvents = db.query(text: searchBar.text!)
         }
@@ -211,7 +217,7 @@ extension EventViewController: EventDelegate {
     
     func wentBack() {
         self.slideMenuController()?.addLeftGestures()
-        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTableTimer), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(updateTableTimer), userInfo: nil, repeats: true)
     }
 }
 
@@ -224,7 +230,7 @@ extension EventViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchBar.text?.count == 0 {
-            allEvents = db.queryAll()
+            getEvents()
             tableView.reloadData()
             searchBar.resignFirstResponder()
         }

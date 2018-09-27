@@ -21,9 +21,6 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="night_sand_digital" translatesAutoresizingMaskIntoConstraints="NO" id="0GH-jK-B4o">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="667" id="j4Y-34-agF"/>
-                                </constraints>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="edG-Dk-k7L">
                                 <rect key="frame" x="4" y="103" width="367" height="564"/>
@@ -38,6 +35,9 @@
                                         <string>Title</string>
                                         <string>Title</string>
                                     </scopeButtonTitles>
+                                    <connections>
+                                        <outlet property="delegate" destination="OnG-p2-Buh" id="Rbh-IC-U0q"/>
+                                    </connections>
                                 </searchBar>
                                 <connections>
                                     <outlet property="dataSource" destination="OnG-p2-Buh" id="pJ7-if-Yi3"/>
@@ -65,12 +65,33 @@
                                     <action selector="menuButtonPressed:" destination="OnG-p2-Buh" eventType="touchUpInside" id="tpG-w8-1Ls"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OyV-v7-Ts1" userLabel="No Items View">
+                                <rect key="frame" x="67.5" y="254.5" width="240" height="158"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="checklist" translatesAutoresizingMaskIntoConstraints="NO" id="86h-Jc-dn4">
+                                        <rect key="frame" x="46" y="25" width="147" height="77"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="List is Empty!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4YA-hT-ZSJ" userLabel="List is Empty!">
+                                        <rect key="frame" x="47" y="110" width="147" height="33"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="24"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="158" id="Yyr-1d-lm3"/>
+                                    <constraint firstAttribute="width" constant="240" id="gpK-j4-ti8"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.64705882349999999" green="0.83921568629999999" blue="0.65490196079999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="edG-Dk-k7L" firstAttribute="bottom" secondItem="gtx-z9-ejK" secondAttribute="bottom" id="2Uf-V2-x77"/>
                             <constraint firstItem="edG-Dk-k7L" firstAttribute="leading" secondItem="gtx-z9-ejK" secondAttribute="leading" constant="4" id="2qo-O6-vFE"/>
                             <constraint firstItem="0GH-jK-B4o" firstAttribute="trailing" secondItem="gtx-z9-ejK" secondAttribute="trailing" id="7jv-FO-DIf"/>
+                            <constraint firstItem="OyV-v7-Ts1" firstAttribute="centerX" secondItem="Ple-S2-OZN" secondAttribute="centerX" id="C69-UV-n85"/>
                             <constraint firstItem="0GH-jK-B4o" firstAttribute="top" secondItem="Ple-S2-OZN" secondAttribute="top" id="CK3-0a-avg"/>
                             <constraint firstItem="lDs-bH-cgV" firstAttribute="trailing" secondItem="gtx-z9-ejK" secondAttribute="trailing" id="GD7-K7-4u4"/>
                             <constraint firstItem="lDs-bH-cgV" firstAttribute="leading" secondItem="gtx-z9-ejK" secondAttribute="leading" id="N9j-ub-8fj"/>
@@ -79,9 +100,11 @@
                             <constraint firstItem="lDs-bH-cgV" firstAttribute="top" secondItem="gtx-z9-ejK" secondAttribute="top" constant="11" id="Tk6-ac-CIl"/>
                             <constraint firstItem="gtx-z9-ejK" firstAttribute="trailing" secondItem="OYw-3c-L8J" secondAttribute="trailing" constant="90" id="Yhu-YR-lmo"/>
                             <constraint firstItem="gtx-z9-ejK" firstAttribute="trailing" secondItem="edG-Dk-k7L" secondAttribute="trailing" constant="4" id="ZKw-lD-8tF"/>
+                            <constraint firstItem="OyV-v7-Ts1" firstAttribute="centerY" secondItem="Ple-S2-OZN" secondAttribute="centerY" id="dJa-f9-9mW"/>
                             <constraint firstItem="OYw-3c-L8J" firstAttribute="leading" secondItem="gtx-z9-ejK" secondAttribute="leading" constant="90" id="lsd-UV-6Oe"/>
                             <constraint firstItem="gtx-z9-ejK" firstAttribute="bottom" secondItem="OYw-3c-L8J" secondAttribute="bottom" constant="12" id="nkg-4k-1bY"/>
                             <constraint firstItem="0GH-jK-B4o" firstAttribute="leading" secondItem="gtx-z9-ejK" secondAttribute="leading" id="pd1-ai-CkG"/>
+                            <constraint firstItem="0GH-jK-B4o" firstAttribute="bottom" secondItem="gtx-z9-ejK" secondAttribute="bottom" id="tRV-GP-mER"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gtx-z9-ejK"/>
                     </view>
@@ -89,13 +112,14 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="2Iu-SI-BvY"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="emptyListView" destination="OyV-v7-Ts1" id="d8S-C8-Ta6"/>
                         <outlet property="searchBar" destination="SRy-eM-Ou9" id="pB6-Ma-DXB"/>
                         <outlet property="tableView" destination="edG-Dk-k7L" id="w4a-aQ-ICX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j0n-W5-MW1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1551" y="124"/>
+            <point key="canvasLocation" x="1549.5999999999999" y="123.68815592203899"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="IL2-Om-5Bv">
@@ -141,7 +165,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8ci-Pl-ZX1" userLabel="Back Button &lt;">
-                                <rect key="frame" x="20" y="42" width="20" height="22"/>
+                                <rect key="frame" x="11" y="42" width="50" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="backbutton"/>
                                 <connections>
@@ -272,6 +296,7 @@
     <resources>
         <image name="addnewbutton" width="140" height="70"/>
         <image name="backbutton" width="13" height="22"/>
+        <image name="checklist" width="372" height="512"/>
         <image name="menubutton" width="20" height="19"/>
         <image name="night_sand_digital" width="736" height="1389"/>
         <image name="savebutton" width="140" height="70"/>
