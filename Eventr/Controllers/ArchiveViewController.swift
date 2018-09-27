@@ -92,31 +92,37 @@ class ArchiveViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-//    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-//        let deleteAction = UITableViewRowAction(style: .destructive, title: "Archive") { (action, indexPath) in
-//            let id = self.allEvents[indexPath.row].id
-//            let result = self.db.archive(id: id)
-//            if result == true {
-//                self.allEvents = self.allEvents.filter{ $0.id != id }
-//                tableView.beginUpdates()
-//                tableView.deleteRows(at: [indexPath], with: .fade)
-//                tableView.endUpdates()
-//                self.getEvents()
-//            }
-//        }
-//        deleteAction.backgroundColor = UIColor.red
-//
-//
-//        let editAction = UITableViewRowAction(style: .normal, title: "Edit") { (action, indexPath) in
-//            let event: Event = self.allEvents[indexPath.row]
-//            self.selectedMode = "edit"
-//            self.performSegue(withIdentifier: "toAddEvent", sender: event)
-//        }
-//        editAction.backgroundColor = UIColor(rgb: 0xbbdefb)
-//
-//        return [deleteAction, editAction]
-//
-//    }
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
+            let id = self.allEvents[indexPath.row].id
+            let result = self.db.delete(id: id)
+            if result == true {
+                self.allEvents = self.allEvents.filter{ $0.id != id }
+                tableView.beginUpdates()
+                tableView.deleteRows(at: [indexPath], with: .fade)
+                tableView.endUpdates()
+                self.getEvents()
+            }
+        }
+        deleteAction.backgroundColor = UIColor.red
+
+
+        let unarchiveAction = UITableViewRowAction(style: .normal, title: "Unarchive") { (action, indexPath) in
+            let id = self.allEvents[indexPath.row].id
+            let result = self.db.unarchive(id: id)
+            if result == true {
+                self.allEvents = self.allEvents.filter{ $0.id != id }
+                tableView.beginUpdates()
+                tableView.deleteRows(at: [indexPath], with: .fade)
+                tableView.endUpdates()
+                self.getEvents()
+            }
+        }
+        unarchiveAction.backgroundColor = UIColor(rgb: 0xbbdefb)
+
+        return [deleteAction, unarchiveAction]
+
+    }
     
 }
 

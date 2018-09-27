@@ -130,13 +130,13 @@
 		C4C9D304215381C500172322 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				C43CCBA221529EC500BBC43A /* EventCell.swift */,
 				C43CCB82215295D300BBC43A /* AppDelegate.swift */,
+				C480E33C21572D7400421BE4 /* ContainerViewController.swift */,
 				C43CCB84215295D300BBC43A /* EventViewController.swift */,
+				C45C26BE215CD16600363ACB /* ArchiveViewController.swift */,
 				C4688AE521554787009326B2 /* CreateEventController.swift */,
 				C480E33A21572BF000421BE4 /* LeftViewController.swift */,
-				C480E33C21572D7400421BE4 /* ContainerViewController.swift */,
-				C45C26BE215CD16600363ACB /* ArchiveViewController.swift */,
+				C43CCBA221529EC500BBC43A /* EventCell.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";

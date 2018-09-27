@@ -14,6 +14,8 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var emptyListView: UIView!
     
+    private let refreshControl = UIRefreshControl()
+    
     let dateFormatter = DateFormatter()
     let defaults = UserDefaults.standard
     var timer: Timer?
@@ -45,6 +47,18 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func setUpTableView() {
         tableView.register(UINib(nibName: "EventCell", bundle: nil), forCellReuseIdentifier: "EventCell")
         tableView.backgroundColor = UIColor.clear
+        
+        if #available(iOS 10.0, *) {
+            tableView.refreshControl = refreshControl
+        } else {
+            tableView.addSubview(refreshControl)
+        }
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        refreshControl.tintColor = UIColor.white
+    }
+    
+    @objc func refresh() {
+        getEvents()
     }
     
     func getEvents() {
@@ -60,8 +74,11 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 self.tableView.alpha = 1
                 self.emptyListView.alpha = 0
             }
-            
         }
+        
+        self.refreshControl.endRefreshing()
+        tableView.reloadData()
+        
     }
     
     // MARK: Table Stuff
@@ -213,7 +230,6 @@ extension EventViewController: EventDelegate {
         } else {
             allEvents = db.query(text: searchBar.text!, for: "main")
         }
-        tableView.reloadData()
     }
     
     func wentBack() {
@@ -232,7 +248,6 @@ extension EventViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchBar.text?.count == 0 {
             getEvents()
-            tableView.reloadData()
             searchBar.resignFirstResponder()
         }
     }
