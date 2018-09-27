@@ -25,7 +25,7 @@
                                     <constraint firstAttribute="height" constant="667" id="j4Y-34-agF"/>
                                 </constraints>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="edG-Dk-k7L">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="edG-Dk-k7L">
                                 <rect key="frame" x="4" y="103" width="367" height="564"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="minimal" placeholder="Search" id="SRy-eM-Ou9" customClass="CustomSearchBar" customModule="Eventr" customModuleProvider="target">
@@ -39,16 +39,10 @@
                                         <string>Title</string>
                                     </scopeButtonTitles>
                                 </searchBar>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EventItemCell" id="eP3-nw-Zy3" customClass="CustomEventCell" customModule="Eventr" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="84" width="367" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eP3-nw-Zy3" id="xEX-tt-tar">
-                                            <rect key="frame" x="0.0" y="0.0" width="367" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="OnG-p2-Buh" id="pJ7-if-Yi3"/>
+                                    <outlet property="delegate" destination="OnG-p2-Buh" id="QaV-yR-pU6"/>
+                                </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OYw-3c-L8J">
                                 <rect key="frame" x="90" y="585" width="195" height="70"/>

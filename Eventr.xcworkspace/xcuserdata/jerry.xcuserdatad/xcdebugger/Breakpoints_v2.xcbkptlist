@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Eventr/Models/Event.swift"
-            timestampString = "559376324.417037"
+            timestampString = "559722303.566384"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "52"
@@ -26,13 +26,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Eventr/Models/Event.swift"
-            timestampString = "559376324.417133"
+            timestampString = "559722303.566644"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "59"
             endingLineNumber = "59"
-            landmarkName = "Event"
-            landmarkType = "3">
+            landmarkName = "buildRelativeTimeString(difference:negative:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -42,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Eventr/Models/Event.swift"
-            timestampString = "559376324.4171799"
+            timestampString = "559722303.566813"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "114"

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CustomEventCell: UITableViewCell {
+class EventCell: UITableViewCell {
 
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var monthLabel: UILabel!

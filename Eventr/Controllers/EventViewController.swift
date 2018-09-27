@@ -41,12 +41,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func setUpTableView() {
-        tableView.register(UINib(nibName: "CustomEventCell", bundle: nil), forCellReuseIdentifier: "customEventCell")
-        tableView.estimatedRowHeight = 60.0
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.separatorStyle = .none
-        tableView.delegate = self
-        tableView.dataSource = self
+        tableView.register(UINib(nibName: "EventCell", bundle: nil), forCellReuseIdentifier: "EventCell")
         tableView.backgroundColor = UIColor.clear
     }
     
@@ -56,7 +51,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         for cell in tableView.visibleCells {
             let indexPath = tableView.indexPath(for: cell)!
             let currentEvent = allEvents[indexPath.row]
-            let currentCell = tableView(tableView, cellForRowAt: indexPath) as! CustomEventCell
+            let currentCell = tableView(tableView, cellForRowAt: indexPath) as! EventCell
             currentEvent.updateRelative()
             currentCell.relativeTimeLabel.attributedText = currentEvent.formattedRelative
         }
@@ -67,7 +62,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "customEventCell", for: indexPath) as! CustomEventCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "EventCell", for: indexPath) as! EventCell
 //        cell.delegate = self
         
         let event = allEvents[indexPath.row]
