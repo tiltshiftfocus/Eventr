@@ -44,6 +44,10 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         getEvents()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        getEvents()
+    }
+    
     func setUpTableView() {
         tableView.register(UINib(nibName: "EventCell", bundle: nil), forCellReuseIdentifier: "EventCell")
         tableView.backgroundColor = UIColor.clear

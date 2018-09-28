@@ -14,6 +14,8 @@ class ArchiveViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var emptyListView: UIView!
     
+    private let refreshControl = UIRefreshControl()
+    
     let dateFormatter = DateFormatter()
     
     let db = DBManager.db
@@ -36,9 +38,25 @@ class ArchiveViewController: UIViewController, UITableViewDelegate, UITableViewD
         getEvents()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        getEvents()
+    }
+    
     func setUpTableView() {
         tableView.register(UINib(nibName: "EventCell", bundle: nil), forCellReuseIdentifier: "EventCell")
         tableView.backgroundColor = UIColor.clear
+        
+        if #available(iOS 10.0, *) {
+            tableView.refreshControl = refreshControl
+        } else {
+            tableView.addSubview(refreshControl)
+        }
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        refreshControl.tintColor = UIColor.white
+    }
+    
+    @objc func refresh() {
+        getEvents()
     }
     
     func getEvents() {
@@ -48,6 +66,7 @@ class ArchiveViewController: UIViewController, UITableViewDelegate, UITableViewD
         } else {
             allEvents = db.query(text: searchBar.text!, for: "archive")
         }
+        self.refreshControl.endRefreshing()
         tableView.reloadData()
         
     }

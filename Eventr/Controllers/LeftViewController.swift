@@ -42,8 +42,6 @@ class LeftViewController: UIViewController {
         case .events:
             self.slideMenuController()?.changeMainViewController(self.eventsBoard, close: true)
         case .archived:
-            archivedBoard = nil
-            archivedBoard = storyboard?.instantiateViewController(withIdentifier: "Archive")
             self.slideMenuController()?.changeMainViewController(self.archivedBoard, close: true)
         }
     }
