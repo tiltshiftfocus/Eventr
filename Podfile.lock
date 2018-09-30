@@ -4,13 +4,11 @@ PODS:
   - FMDB/standard (2.7.2)
   - SlideMenuControllerSwift (4.0.0)
   - SVProgressHUD (2.2.5)
-  - SwipeCellKit (2.5.0)
 
 DEPENDENCIES:
   - FMDB
   - SlideMenuControllerSwift
   - SVProgressHUD
-  - SwipeCellKit (from `https://github.com/SwipeCellKit/SwipeCellKit.git`, branch `develop`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -18,22 +16,11 @@ SPEC REPOS:
     - SlideMenuControllerSwift
     - SVProgressHUD
 
-EXTERNAL SOURCES:
-  SwipeCellKit:
-    :branch: develop
-    :git: https://github.com/SwipeCellKit/SwipeCellKit.git
-
-CHECKOUT OPTIONS:
-  SwipeCellKit:
-    :commit: 9c69084b9b331c3c9f4767add20afe72112adee8
-    :git: https://github.com/SwipeCellKit/SwipeCellKit.git
-
 SPEC CHECKSUMS:
   FMDB: 6198a90e7b6900cfc046e6bc0ef6ebb7be9236aa
   SlideMenuControllerSwift: 021d6318201c53d4d4d3710517d43d6c556c7dd0
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
-  SwipeCellKit: d8f2617538ce3021cb0a11d1b93856a06a2f2e20
 
-PODFILE CHECKSUM: 3a61e2bb21ce35a19198581b65cb4a21e27d4030
+PODFILE CHECKSUM: 435bf351f7b0265d4d6c9c5d10b3554d4c07c3e3
 
 COCOAPODS: 1.5.3

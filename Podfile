@@ -8,7 +8,6 @@ target 'Eventr' do
   # Pods for Eventr
   pod 'FMDB'
   pod 'SVProgressHUD'
-  pod 'SwipeCellKit', :git => 'https://github.com/SwipeCellKit/SwipeCellKit.git', :branch => 'develop'
   pod 'SlideMenuControllerSwift'
   
 end
