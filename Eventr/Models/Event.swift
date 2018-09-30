@@ -14,14 +14,16 @@ class Event {
     var dateOfEvent: Date = Date()
     var formattedRelative: NSAttributedString = NSAttributedString(string: "")
     var isWeekend: Bool = false
+    var active: Bool = true
     
     var cal = Calendar(identifier: .gregorian)
     
-    init(id: Int64, name: String, dateOfEvent: Date = Date()) {
+    init(id: Int64, name: String, dateOfEvent: Date = Date(), active: Bool) {
         self.id = id
         self.name = name
         self.dateOfEvent = dateOfEvent
         self.formattedRelative = relativeTimeFormatter(date1: dateOfEvent)
+        self.active = active
         setWeekEnd()
     }
     

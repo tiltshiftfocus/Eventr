@@ -57,7 +57,8 @@ class DBManager {
                 let id = rs.longLongInt(forColumn: "ID")
                 let name = rs.string(forColumn: "name")!
                 let datetime = rs.longLongInt(forColumn: "when_db")
-                events.append(Event(id: id, name: name, dateOfEvent: Date(timeIntervalSince1970: Double(datetime/1000))))
+                let active = rs.bool(forColumn: "isAvailable")
+                events.append(Event(id: id, name: name, dateOfEvent: Date(timeIntervalSince1970: Double(datetime/1000)), active: active))
             }
             db.close()
         } catch {
@@ -83,7 +84,8 @@ class DBManager {
                 let id = rs.longLongInt(forColumn: "ID")
                 let name = rs.string(forColumn: "name")!
                 let datetime = rs.longLongInt(forColumn: "when_db")
-                events.append(Event(id: id, name: name, dateOfEvent: Date(timeIntervalSince1970: Double(datetime/1000))))
+                let active = rs.bool(forColumn: "isAvailable")
+                events.append(Event(id: id, name: name, dateOfEvent: Date(timeIntervalSince1970: Double(datetime/1000)), active: active))
             }
             db.close()
         } catch {

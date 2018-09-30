@@ -113,6 +113,8 @@ class ArchiveViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         cell.relativeTimeLabel?.attributedText = event.formattedRelative
         
+        cell.archivedIcon.isHidden = false
+        
         return cell
     }
     

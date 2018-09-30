@@ -19,6 +19,7 @@
 		C45C26C1215CD92000363ACB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45C26C0215CD92000363ACB /* Extensions.swift */; };
 		C4688AE621554787009326B2 /* CreateEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4688AE521554787009326B2 /* CreateEventController.swift */; };
 		C4688AE82155C028009326B2 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4688AE72155C028009326B2 /* Utils.swift */; };
+		C4733F9621609B7D009AF36B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4733F9521609B7D009AF36B /* SearchViewController.swift */; };
 		C480E3382156A23D00421BE4 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C480E3372156A23D00421BE4 /* CardView.swift */; };
 		C480E33B21572BF000421BE4 /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C480E33A21572BF000421BE4 /* LeftViewController.swift */; };
 		C480E33D21572D7400421BE4 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C480E33C21572D7400421BE4 /* ContainerViewController.swift */; };
@@ -43,6 +44,7 @@
 		C45C26C0215CD92000363ACB /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		C4688AE521554787009326B2 /* CreateEventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventController.swift; sourceTree = "<group>"; };
 		C4688AE72155C028009326B2 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		C4733F9521609B7D009AF36B /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		C480E3372156A23D00421BE4 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		C480E33A21572BF000421BE4 /* LeftViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
 		C480E33C21572D7400421BE4 /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 				C4688AE521554787009326B2 /* CreateEventController.swift */,
 				C480E33A21572BF000421BE4 /* LeftViewController.swift */,
 				C43CCBA221529EC500BBC43A /* EventCell.swift */,
+				C4733F9521609B7D009AF36B /* SearchViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4733F9621609B7D009AF36B /* SearchViewController.swift in Sources */,
 				C4C9D308215381F800172322 /* Event.swift in Sources */,
 				C43CCB85215295D300BBC43A /* EventViewController.swift in Sources */,
 				C45C26BF215CD16600363ACB /* ArchiveViewController.swift in Sources */,

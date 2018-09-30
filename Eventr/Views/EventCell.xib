@@ -24,7 +24,7 @@
                         <rect key="frame" x="10" y="11" width="310" height="97"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="An Event" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uF0-TI-qjB">
-                                <rect key="frame" x="90" y="9" width="212" height="23.5"/>
+                                <rect key="frame" x="90" y="9" width="180" height="24"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -76,21 +76,29 @@
                                 <color key="textColor" red="0.1784731218" green="0.1715399789" blue="0.17730887949999999" alpha="0.55922645250000003" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView hidden="YES" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="archive" translatesAutoresizingMaskIntoConstraints="NO" id="kpi-wD-iMb">
+                                <rect key="frame" x="286" y="13" width="16" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="16" id="PaK-FI-FDY"/>
+                                    <constraint firstAttribute="height" constant="16" id="v5a-8c-8NW"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="yXg-MS-DAQ" secondAttribute="trailing" constant="8" id="3yr-9v-R6o"/>
                             <constraint firstItem="yXg-MS-DAQ" firstAttribute="top" secondItem="uF0-TI-qjB" secondAttribute="bottom" constant="38" id="EfW-EB-Tu5"/>
-                            <constraint firstAttribute="trailing" secondItem="uF0-TI-qjB" secondAttribute="trailing" constant="8" id="IO9-oB-EqF"/>
+                            <constraint firstAttribute="trailing" secondItem="uF0-TI-qjB" secondAttribute="trailing" constant="40" id="IO9-oB-EqF"/>
                             <constraint firstItem="PEf-Yr-BDC" firstAttribute="leading" secondItem="NyM-HN-6bc" secondAttribute="trailing" constant="8" id="Nsq-5f-ksG"/>
                             <constraint firstItem="uF0-TI-qjB" firstAttribute="leading" secondItem="PEf-Yr-BDC" secondAttribute="trailing" constant="12" id="Qsu-YM-Qw3"/>
                             <constraint firstItem="PEf-Yr-BDC" firstAttribute="top" secondItem="CgX-sk-SX8" secondAttribute="top" constant="9" id="XZB-KY-ABf"/>
                             <constraint firstItem="NyM-HN-6bc" firstAttribute="top" secondItem="CgX-sk-SX8" secondAttribute="top" constant="5" id="cbG-b1-WbV"/>
                             <constraint firstItem="yXg-MS-DAQ" firstAttribute="leading" secondItem="PEf-Yr-BDC" secondAttribute="trailing" constant="8" id="eJU-cj-Pbp"/>
+                            <constraint firstAttribute="trailing" secondItem="kpi-wD-iMb" secondAttribute="trailing" constant="8" id="fSx-vJ-XIR"/>
                             <constraint firstItem="PEf-Yr-BDC" firstAttribute="leading" secondItem="NyM-HN-6bc" secondAttribute="trailing" constant="8" id="hge-Xg-TAD"/>
+                            <constraint firstItem="kpi-wD-iMb" firstAttribute="top" secondItem="CgX-sk-SX8" secondAttribute="top" constant="13" id="kua-OS-Nsh"/>
                             <constraint firstItem="PEf-Yr-BDC" firstAttribute="centerY" secondItem="NyM-HN-6bc" secondAttribute="centerY" id="kwD-nB-oG5"/>
                             <constraint firstItem="NyM-HN-6bc" firstAttribute="centerY" secondItem="CgX-sk-SX8" secondAttribute="centerY" id="m2q-3P-AHG"/>
-                            <constraint firstItem="yXg-MS-DAQ" firstAttribute="top" secondItem="uF0-TI-qjB" secondAttribute="bottom" constant="38" id="olZ-rR-6Te"/>
                             <constraint firstItem="NyM-HN-6bc" firstAttribute="leading" secondItem="CgX-sk-SX8" secondAttribute="leadingMargin" id="pbn-Ec-Mbl"/>
                             <constraint firstItem="uF0-TI-qjB" firstAttribute="top" secondItem="CgX-sk-SX8" secondAttribute="top" constant="9" id="pvr-Ll-BWS"/>
                             <constraint firstAttribute="bottom" secondItem="yXg-MS-DAQ" secondAttribute="bottom" constant="6.5" id="yos-EY-FoD"/>
@@ -106,6 +114,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="archivedIcon" destination="kpi-wD-iMb" id="ltB-5x-JoC"/>
                 <outlet property="dateLabel" destination="geZ-dD-36n" id="WET-4D-M9t"/>
                 <outlet property="eventLabel" destination="uF0-TI-qjB" id="ROb-CD-C9Y"/>
                 <outlet property="monthLabel" destination="f6B-8t-jRI" id="UUa-Wm-GIE"/>
@@ -115,4 +124,7 @@
             <point key="canvasLocation" x="19" y="98.5"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="archive" width="32" height="31"/>
+    </resources>
 </document>
