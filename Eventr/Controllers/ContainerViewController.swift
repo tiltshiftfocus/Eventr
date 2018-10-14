@@ -18,9 +18,9 @@ class ContainerViewController: SlideMenuController {
         SlideMenuOptions.contentViewScale = 0.999
         
         
-        if let controller = self.storyboard?.instantiateViewController(withIdentifier: "Main") {
-            self.mainViewController = controller
-        }
+//        if let controller = self.storyboard?.instantiateViewController(withIdentifier: "Main") {
+//            self.mainViewController = controller
+//        }
         if let controller = self.storyboard?.instantiateViewController(withIdentifier: "Left") {
             self.leftViewController = controller
         }

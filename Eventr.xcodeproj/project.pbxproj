@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AC7E7B6E11564F2D37EE97C2 /* Pods_Eventr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9EEADF749E45B9CCC24F958 /* Pods_Eventr.framework */; };
+		C41A6C012173838800D7F02B /* ViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41A6C002173838800D7F02B /* ViewControllers.swift */; };
 		C43CCB83215295D300BBC43A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43CCB82215295D300BBC43A /* AppDelegate.swift */; };
 		C43CCB85215295D300BBC43A /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43CCB84215295D300BBC43A /* EventViewController.swift */; };
 		C43CCB88215295D300BBC43A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C43CCB86215295D300BBC43A /* Main.storyboard */; };
@@ -31,6 +32,7 @@
 
 /* Begin PBXFileReference section */
 		601456745D71E2040970BAC2 /* Pods-Eventr.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eventr.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Eventr/Pods-Eventr.debug.xcconfig"; sourceTree = "<group>"; };
+		C41A6C002173838800D7F02B /* ViewControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllers.swift; sourceTree = "<group>"; };
 		C43CCB7F215295D300BBC43A /* Eventr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Eventr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C43CCB82215295D300BBC43A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C43CCB84215295D300BBC43A /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				C4A284602154884500054E1B /* DBManager.swift */,
 				C4688AE72155C028009326B2 /* Utils.swift */,
 				C45C26C0215CD92000363ACB /* Extensions.swift */,
+				C41A6C002173838800D7F02B /* ViewControllers.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 			files = (
 				C4733F9621609B7D009AF36B /* SearchViewController.swift in Sources */,
 				C4C9D308215381F800172322 /* Event.swift in Sources */,
+				C41A6C012173838800D7F02B /* ViewControllers.swift in Sources */,
 				C43CCB85215295D300BBC43A /* EventViewController.swift in Sources */,
 				C45C26BF215CD16600363ACB /* ArchiveViewController.swift in Sources */,
 				C49283682157608100131B74 /* CustomSearchBar.swift in Sources */,

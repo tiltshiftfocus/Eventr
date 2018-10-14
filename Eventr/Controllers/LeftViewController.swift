@@ -19,9 +19,6 @@ class LeftViewController: UIViewController {
         "Archived"
     ]
     
-    var eventsBoard: UIViewController!
-    var archivedBoard: UIViewController!
-    
     @IBOutlet weak var menuTableView: UITableView!
     
     override func viewDidLoad() {
@@ -31,18 +28,29 @@ class LeftViewController: UIViewController {
         setupDrawerControllers()
     }
     
+    override func viewDidLayoutSubviews() {
+        self.slideMenuController()?.changeMainViewController(ViewControllers.shared.eventsBoard, close: true)
+    }
+    
     // MARK: Drawer Configurations and Functions
     func setupDrawerControllers() {
-        eventsBoard = storyboard?.instantiateViewController(withIdentifier: "Main")
-        archivedBoard = storyboard?.instantiateViewController(withIdentifier: "Archive")
+        if let _ = ViewControllers.shared.eventsBoard {
+        } else {
+            ViewControllers.shared.eventsBoard = storyboard?.instantiateViewController(withIdentifier: "Main")
+        }
+        
+        if let _ = ViewControllers.shared.archivedBoard {
+        } else {
+            ViewControllers.shared.archivedBoard = storyboard?.instantiateViewController(withIdentifier: "Archive")
+        }
     }
     
     func changeViewController(_ menu: LeftMenu) {
         switch menu {
         case .events:
-            self.slideMenuController()?.changeMainViewController(self.eventsBoard, close: true)
+            self.slideMenuController()?.changeMainViewController(ViewControllers.shared.eventsBoard, close: true)
         case .archived:
-            self.slideMenuController()?.changeMainViewController(self.archivedBoard, close: true)
+            self.slideMenuController()?.changeMainViewController(ViewControllers.shared.archivedBoard, close: true)
         }
     }
 
