@@ -121,20 +121,25 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         dateFormatter.dateFormat = "dd"
         cell.dateLabel?.text = dateFormatter.string(from: event.dateOfEvent)
-        if event.isWeekend {
-            cell.dateLabel?.textColor = .red
-        } else {
-            cell.dateLabel?.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.56)
-        }
         
         dateFormatter.dateFormat = "MMM"
         cell.monthLabel?.text = dateFormatter.string(from: event.dateOfEvent)
         dateFormatter.dateFormat = "yyyy"
         cell.yearLabel?.text = dateFormatter.string(from: event.dateOfEvent)
         
-        cell.relativeTimeLabel?.attributedText = event.formattedRelative
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let _cell = cell as! EventCell
+        let event = allEvents[indexPath.row]
+        if event.isWeekend {
+            _cell.dateLabel?.textColor = .red
+        } else {
+            _cell.dateLabel?.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.56)
+        }
+        _cell.relativeTimeLabel?.attributedText = event.formattedRelative
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
